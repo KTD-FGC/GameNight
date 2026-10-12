@@ -6,6 +6,13 @@ using UnityEngine.InputSystem.Controls;
 public class PlayerController : MonoBehaviour
 {
 
+        /*
+         Temp variables for testing
+         */
+    private Vector2 m_moveAmt;
+    public float moveSpeed = 5.0f;
+    private CharacterController CharacterController;
+
     private enum enum_StickDir { UpLeft, Up, UpRight, Right, DownRight, Down, DownLeft, Left, Neutral}
     private enum enum_ButtonName { btn1, btn2, btn3, btn4, btn5, btn6, none}
 
@@ -87,17 +94,37 @@ public class PlayerController : MonoBehaviour
 
     private Gamepad gamepad;
 
+    private void Awake()
+    {
+        CharacterController = GetComponent<CharacterController>();
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         gamepad = Gamepad.current;
+    }
+        /*
+         test code
+         */
+    public void OnMove(InputAction.CallbackContext cxt)
+    {
+        m_moveAmt = cxt.ReadValue<Vector2>();
+        Debug.Log("test");
     }
 
     // Update is called once per frame
     void Update()
     {
         GetInput();
+
+        /*
+         test code
+         */
+        Vector3 move = new Vector3(m_moveAmt.x, 0, m_moveAmt.y);
+        CharacterController.Move(move * moveSpeed *  Time.deltaTime);
     }
+
 
     void GetInput()
     {
@@ -126,7 +153,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        AddInputDataToBuffer(thisFramesData); //everything done this frame gets added to a snapshot of that frame in the buffer data
+        //AddInputDataToBuffer(thisFramesData); //everything done this frame gets added to a snapshot of that frame in the buffer data
 
     }
 
@@ -201,18 +228,18 @@ public class PlayerController : MonoBehaviour
         return enum_StickDir.Neutral;
     }
 
-    void AddInputDataToBuffer(InputData inputs)
-    {
-        for (int i = 0; i < bufferFrames; i++)
-        {
-            if (i != bufferFrames-1)//0 indexed
-            {
-                bufferData[i] = bufferData[i + 1];
-            }
-            if (i == bufferFrames-1)
-            {
-                bufferData[i] = inputs;
-            }
-        }
-    }
+    //void AddInputDataToBuffer(InputData inputs)
+    //{
+    //    for (int i = 0; i < bufferFrames; i++)
+    //    {
+    //        if (i != bufferFrames-1)//0 indexed
+    //        {
+    //            bufferData[i] = bufferData[i + 1];
+    //        }
+    //        if (i == bufferFrames-1)
+    //        {
+    //            bufferData[i] = inputs;
+    //        }
+    //    }
+    //}
 }
