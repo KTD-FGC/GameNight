@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private int bufferFrames = 20; //we can have this set on a per minigame basis if needed, but should be large enough to reasonably read the inputs for say a super if needed
-    private InputData[] bufferData;
+    private InputData[] bufferData; //set empty data equal to bufferFrames so it's not putting null into the buffer
 
     private Gamepad gamepad;
 
@@ -103,6 +103,11 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         gamepad = Gamepad.current;
+        bufferData = new InputData[bufferFrames];
+        for (int i = 0; i < bufferFrames-1; i++)
+        {
+            bufferData[i] = new InputData();
+        }
     }
         /*
          test code
@@ -153,7 +158,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        //AddInputDataToBuffer(thisFramesData); //everything done this frame gets added to a snapshot of that frame in the buffer data
+        AddInputDataToBuffer(thisFramesData); //everything done this frame gets added to a snapshot of that frame in the buffer data
 
     }
 
@@ -228,18 +233,18 @@ public class PlayerController : MonoBehaviour
         return enum_StickDir.Neutral;
     }
 
-    //void AddInputDataToBuffer(InputData inputs)
-    //{
-    //    for (int i = 0; i < bufferFrames; i++)
-    //    {
-    //        if (i != bufferFrames-1)//0 indexed
-    //        {
-    //            bufferData[i] = bufferData[i + 1];
-    //        }
-    //        if (i == bufferFrames-1)
-    //        {
-    //            bufferData[i] = inputs;
-    //        }
-    //    }
-    //}
+    void AddInputDataToBuffer(InputData inputs)
+    {
+        for (int i = 0; i < bufferFrames; i++)
+        {
+            if (i != bufferFrames-1)//0 indexed
+            {
+                bufferData[i] = bufferData[i + 1];
+            }
+            if (i == bufferFrames-1)
+            {
+                bufferData[i] = inputs;
+            }
+        }
+    }
 }
