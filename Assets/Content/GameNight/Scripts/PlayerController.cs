@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour
         /*
          test code
          */
-        Vector3 move = new Vector3(m_moveAmt.x, 0, m_moveAmt.y);
+        Vector3 move = new Vector3(m_moveAmt.x, m_moveAmt.y, 0);
         CharacterController.Move(move * moveSpeed *  Time.deltaTime);
     }
 
