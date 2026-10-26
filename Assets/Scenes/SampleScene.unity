@@ -218,7 +218,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: bbc958424b188314eb7fc4c6c9ab6080, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -549,7 +549,7 @@ MonoBehaviour:
   spawnPoint1: {fileID: 1832250839}
   spawnPoint2: {fileID: 55197727}
   player1: {fileID: 5518654121786583992, guid: 8e02a0776a4e3f943b63a17377b8c337, type: 3}
-  player2: {fileID: 8401194180170925145, guid: 6d1172e144ebcc949b147c13f7d6cd09, type: 3}
+  player2: {fileID: 0}
 --- !u!114 &574237212
 MonoBehaviour:
   m_ObjectHideFlags: 0
