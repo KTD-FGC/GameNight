@@ -3,26 +3,30 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 
+using System.Collections.Generic;
+
 public class PlayerController : MonoBehaviour
 {
 
-        /*
-         Temp variables for testing
-         */
+    /*
+     Temp variables for testing
+     */
     private Vector2 m_moveAmt;
     public float moveSpeed = 5.0f;
     private CharacterController CharacterController;
 
-    private enum enum_StickDir { UpLeft, Up, UpRight, Right, DownRight, Down, DownLeft, Left, Neutral}
-    private enum enum_ButtonName { btn1, btn2, btn3, btn4, btn5, btn6, none}
+    private enum enum_StickDir { UpLeft, Up, UpRight, Right, DownRight, Down, DownLeft, Left, Neutral }
+    private enum enum_ButtonName { btn1, btn2, btn3, btn4, btn5, btn6, none }
+    public MovelistDictionary moveInputsDictionary; //edit in inspector
+    private bool isFacingRight { get; set; } = true; //to mirror inputs
 
 
     private struct InputData
     {
-        private enum_StickDir stickDirection;
-        private enum_ButtonName[] pressedButtons;
-        private enum_ButtonName[] heldButtons;
-        private enum_ButtonName[] releasedButtons;
+        public enum_StickDir stickDirection;
+        public enum_ButtonName[] pressedButtons;
+        public enum_ButtonName[] heldButtons;
+        public enum_ButtonName[] releasedButtons;
 
         public InputData(enum_StickDir stickDir, enum_ButtonName[] pressedBtns, enum_ButtonName[] heldBtns, enum_ButtonName[] releasedBtns)
         {
@@ -87,6 +91,37 @@ public class PlayerController : MonoBehaviour
                 releasedButtons = tempArray;
             }
         }
+
+        public static bool CompareStickDir(enum_StickDir a, Inputs b)
+        {
+            string tempA = a.ToString();
+            string tempB = b.ToString();
+
+            if (tempA == tempB)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool CompareButtonInput(enum_ButtonName a, Inputs b)
+        {
+            string tempA = a.ToString();
+            string tempB = b.ToString();
+
+            if (tempA == tempB)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 
     private int bufferFrames = 20; //we can have this set on a per minigame basis if needed, but should be large enough to reasonably read the inputs for say a super if needed
@@ -97,17 +132,18 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         CharacterController = GetComponent<CharacterController>();
+
+        bufferData = new InputData[bufferFrames];
+        for (int i = 0; i < bufferFrames; i++)
+        {
+            bufferData[i] = new InputData(0, new enum_ButtonName[0], new enum_ButtonName[0], new enum_ButtonName[0]);
+        }
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         gamepad = Gamepad.current;
-        bufferData = new InputData[bufferFrames];
-        for (int i = 0; i < bufferFrames-1; i++)
-        {
-            bufferData[i] = new InputData();
-        }
     }
         /*
          test code
@@ -159,6 +195,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         AddInputDataToBuffer(thisFramesData); //everything done this frame gets added to a snapshot of that frame in the buffer data
+        InterpretInput();
 
     }
 
@@ -245,6 +282,94 @@ public class PlayerController : MonoBehaviour
             {
                 bufferData[i] = inputs;
             }
+        }
+    }
+
+    void ExecuteMove(MoveData executedMove) //execute the MoveData
+    {
+        Debug.Log(executedMove.moveName);
+        return;
+    }
+
+    void InterpretInput() //go from Highest to Lowest Priority inputs
+    {
+        for (int i = 0; i < moveInputsDictionary.Priority1.Count; i++)
+        {
+            if (CheckBufferForInput(moveInputsDictionary.Priority1[i])){
+                ExecuteMove(moveInputsDictionary.Priority1[i].moveData);
+                return;
+            }
+        }
+
+        for (int i = 0; i < moveInputsDictionary.Priority2.Count; i++)
+        {
+            if (CheckBufferForInput(moveInputsDictionary.Priority2[i]))
+            {
+                ExecuteMove(moveInputsDictionary.Priority2[i].moveData);
+                return;
+            }
+        }
+
+        for (int i = 0; i < moveInputsDictionary.Priority3.Count; i++)
+        {
+            if (CheckBufferForInput(moveInputsDictionary.Priority3[i]))
+            {
+                ExecuteMove(moveInputsDictionary.Priority3[i].moveData);
+                return;
+            }
+        }
+
+        for (int i = 0; i < moveInputsDictionary.Priority4.Count; i++)
+        {
+            if (CheckBufferForInput(moveInputsDictionary.Priority4[i]))
+            {
+                ExecuteMove(moveInputsDictionary.Priority4[i].moveData);
+                return;
+            }
+        }
+
+        for (int i = 0; i < moveInputsDictionary.Priority5.Count; i++)
+        {
+            if (CheckBufferForInput(moveInputsDictionary.Priority5[i]))
+            {
+                ExecuteMove(moveInputsDictionary.Priority5[i].moveData);
+                return;
+            }
+        }
+
+    }
+
+    bool CheckBufferForInput(MovelistDictionary.MoveInfo expectedInput) //naive implementation ie: checking full buffer, was the input "successfully" completed? 
+    {
+        var inputCombo = expectedInput.moveInputs;
+        int comboCount = expectedInput.moveInputs.Count - 1; //how many inputs to execute move, hadouken being 236P is 4 Inputs
+        for (int i = bufferFrames-1; i >= 0; i--) //this loops through the whole buffer, if we want to define how much of the buffer to loop through on a per move basis, that can be a property of MovelistDictionary
+        {
+            if (i >= 0) //this is dumb, but you can potentially hit your last input on the move before the StickDir check/viceVersa
+            {
+                foreach (enum_ButtonName btn in bufferData[i].pressedButtons)
+                {
+                    if (InputData.CompareButtonInput(btn, inputCombo[comboCount]))
+                    {
+                        comboCount--;
+                    }
+                }
+            }
+
+            if (i >= 0)
+            {
+                if (InputData.CompareStickDir(bufferData[i].stickDirection, inputCombo[comboCount]))
+                {
+                    comboCount--;
+                }
+            }
+        }
+        
+        if (comboCount == -1){
+            return true;
+        }
+        else{
+            return false;
         }
     }
 }

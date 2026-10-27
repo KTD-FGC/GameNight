@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewModeData", menuName = "ScriptableObjects/MoveData")]
+[CreateAssetMenu(fileName = "NewModeData", menuName = "Scriptable Objects/MoveData")]
 public class MoveData : ScriptableObject
 {
     public string moveName;
