@@ -1,6 +1,6 @@
-[ ] scenes in a randomizer 
-[ ] random range between the scenes
-[ ] load in minigame
+[X] scenes in a randomizer 
+[X] random range between the scenes
+[X] load in minigame
 [ ] check if completed minigame objective
 	award 1 point
 	no points on fail
@@ -11,11 +11,11 @@
 	1st minigame, always on easy
 	scalable
 
-[ ] minigame contains how long the timer should be
+[X] minigame contains how long the timer should be
 
 [ ] actual time is adjustable outside of the scene itself
 
-[ ] timer should not start until after a countdown
+[X] timer should not start until after a countdown
 
 [ ] Countdown noises
 

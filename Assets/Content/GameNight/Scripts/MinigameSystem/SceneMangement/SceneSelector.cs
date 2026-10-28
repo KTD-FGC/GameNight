@@ -5,6 +5,15 @@ public static class SceneSelector
 {
     private static int currentScene = 0;
     private static bool isRepeat = true;
+
+
+    /// <summary>
+    /// Preload the minigames into the scene selector
+    /// </summary>
+    public static void LoadMinigames()
+    {
+        
+    }
     public static void RandomSceneSelector()
     {
 

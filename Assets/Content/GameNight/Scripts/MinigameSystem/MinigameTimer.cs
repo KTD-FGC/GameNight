@@ -14,7 +14,9 @@ public class MinigameTimer : MonoBehaviour
     [SerializeField] float _timerDelay = 2;
 
 
-    public UnityEvent OnBeginMinigame;
+    public static Action TimerExpired;
+    public static Action TimerStarted;
+    public static Action<float> TimerUpdated;
     float currentTime;
     bool isRunning = false;
     private void OnEnable()
@@ -36,11 +38,10 @@ public class MinigameTimer : MonoBehaviour
         SceneSelector.RandomSceneSelector();
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        currentTime = _timerDuration;
-        StartCoroutine(BeginGame());
+
+
     }
 
     // Update is called once per frame
@@ -53,18 +54,26 @@ public class MinigameTimer : MonoBehaviour
 
             if (currentTime <= 0)
             {
-                GlobalInstance.RemoveLives();
+                //When the timer expires, invoke the event located on the minigame manager
+                TimerExpired?.Invoke();
                 isRunning = false;
             }
+            TimerUpdated?.Invoke(currentTime);
         }
 
 
     }
+
+    public void StartTimer()
+    {
+        StartCoroutine(BeginGame());
+    }
     
     IEnumerator BeginGame()
-    {
+    {        
+        currentTime = _timerDuration;
         yield return new WaitForSeconds(_timerDelay);
-        OnBeginMinigame?.Invoke();
+        TimerStarted?.Invoke();
         isRunning = true;
 
     }
