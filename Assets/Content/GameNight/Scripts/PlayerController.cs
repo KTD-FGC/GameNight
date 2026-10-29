@@ -13,12 +13,16 @@ public class PlayerController : MonoBehaviour
      */
     private Vector2 m_moveAmt;
     public float moveSpeed = 5.0f;
+    public bool isFacingRight { get; set; } = true; //to mirror inputs
     private CharacterController CharacterController;
 
     private enum enum_StickDir { UpLeft, Up, UpRight, Right, DownRight, Down, DownLeft, Left, Neutral }
     private enum enum_ButtonName { btn1, btn2, btn3, btn4, btn5, btn6, none }
     public MovelistDictionary moveInputsDictionary; //edit in inspector
-    private bool isFacingRight { get; set; } = true; //to mirror inputs
+
+    private bool[] btnsPressedThisFrame = new bool[] { false, false, false, false, false, false }; //We have to sync Update with FixedUpdate, or we miss inputs
+    private bool[] btnsHeldThisFrame = new bool[] { false, false, false, false, false, false };
+    private bool[] btnsReleasedThisFrame = new bool[] { false, false, false, false, false, false };
 
 
     private struct InputData
@@ -151,52 +155,114 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext cxt)
     {
         m_moveAmt = cxt.ReadValue<Vector2>();
-        Debug.Log("test");
+        //Debug.Log("test");
+    }
+
+    void FixedUpdate()
+    {
+        GetInput();
+        ClearButtonBools();
     }
 
     // Update is called once per frame
     void Update()
     {
-        GetInput();
+        //GetInput();
 
         /*
          test code
          */
         Vector3 move = new Vector3(m_moveAmt.x, m_moveAmt.y, 0);
         CharacterController.Move(move * moveSpeed *  Time.deltaTime);
+        SetButtonBools();
     }
 
+    void SetButtonBools()
+    {
+        for (int i = 1; i < 7; i++)
+        {
+            string buttonName = $"btn{i}";
+            InputAction action = InputSystem.actions.FindAction(buttonName);
+            if (action.WasPressedThisFrame()){//note, Input actions use WasPressedThisFrame() syntax
+                btnsPressedThisFrame[i - 1] = true;
+            }
+            if (action.IsPressed() && !action.WasPressedThisFrame()){//and ButtonControl used wasPressedThisFrame syntax :_))))
+                btnsHeldThisFrame[i - 1] = true;
+            }
+            if (action.WasReleasedThisFrame()){
+                btnsReleasedThisFrame[i - 1] = true;
+            }
+        }
+    }
+
+    void ClearButtonBools()
+    {
+        btnsPressedThisFrame = new bool[] { false, false, false, false, false, false };
+        btnsHeldThisFrame = new bool[] { false, false, false, false, false, false };
+        btnsReleasedThisFrame = new bool[] { false, false, false, false, false, false };
+    }
 
     void GetInput()
     {
         Vector2 stickInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        stickInput = ClampStickDir(stickInput);
+        if (!isFacingRight){
+            stickInput.x *= -1;
+        }
+       
         enum_StickDir inputedDir = DefineStickDir(stickInput);
-        enum_ButtonName[] pressedButtons = new enum_ButtonName[6]; //for now assuming no more than 6 buttons for moves
-        enum_ButtonName[] heldButtons = new enum_ButtonName[6];
-        enum_ButtonName[] releasedButtons = new enum_ButtonName[6];
+        enum_ButtonName[] pressedButtons = new enum_ButtonName[0]; 
+        enum_ButtonName[] heldButtons = new enum_ButtonName[0];
+        enum_ButtonName[] releasedButtons = new enum_ButtonName[0];
         InputData thisFramesData = new InputData(inputedDir, pressedButtons, heldButtons, releasedButtons);
-
-        foreach (var control in gamepad.allControls)
+        for (int i = 0; i<6; i++)
         {
-            if (control is ButtonControl button)
+            if (btnsPressedThisFrame[i] == true){
+                thisFramesData.Append(DefineButtonName(i + 1), 0);
+            }
+            if (btnsHeldThisFrame[i] == true)
             {
-                if (button.wasPressedThisFrame)
-                {
-                    thisFramesData.Append(DefineButtonName(button), 0); //append doesn't exist in unity (and arrays are static size :-^) so fix this
-                }
-                if (button.isPressed && !button.wasPressedThisFrame)
-                {
-                    thisFramesData.Append(DefineButtonName(button), 1);
-                }
-                if (button.wasReleasedThisFrame)
-                {
-                    thisFramesData.Append(DefineButtonName(button), 2);
-                }
+                thisFramesData.Append(DefineButtonName(i + 1), 1);
+            }
+            if (btnsReleasedThisFrame[i] == true)
+            {
+                thisFramesData.Append(DefineButtonName(i + 1), 2);
             }
         }
         AddInputDataToBuffer(thisFramesData); //everything done this frame gets added to a snapshot of that frame in the buffer data
         InterpretInput();
 
+    }
+
+    Vector2 ClampStickDir(Vector2 stickInput)
+    {
+        if (stickInput.x > .2)
+        {
+            stickInput.x = 1;
+        }
+        else if (stickInput.x < -.2)
+        {
+            stickInput.x = -1;
+        }
+        else if (stickInput.x > -.2 && stickInput.x < .2)
+        {
+            stickInput.x = 0;
+        }
+
+        if (stickInput.y > .2)
+        {
+            stickInput.y = 1;
+        }
+        else if (stickInput.y < -.2)
+        {
+            stickInput.y = -1;
+        }
+        else if (stickInput.y > -.2 && stickInput.y < .2)
+        {
+            stickInput.y = 0;
+        }
+
+        return stickInput;
     }
 
     enum_ButtonName DefineButtonName(ButtonControl button)
@@ -233,7 +299,75 @@ public class PlayerController : MonoBehaviour
         return enum_ButtonName.none;//this shouldn't happen
     }
 
-    enum_StickDir DefineStickDir(Vector2 stickInput) //GetAxisRaw only ever returns -1, 0, or 1.
+    int ButtonNameToInt(ButtonControl button)
+    {
+        if (button.name == "btn1")
+        {
+            return 1;
+        }
+
+        if (button.name == "btn2")
+        {
+            return 2;
+        }
+
+        if (button.name == "btn3")
+        {
+            return 3;
+        }
+
+        if (button.name == "btn4")
+        {
+            return 4;
+        }
+
+        if (button.name == "btn5")
+        {
+            return 5;
+        }
+
+        if (button.name == "btn6")
+        {
+            return 6;
+        }
+        return 0;//this shouldn't happen
+    }
+
+    enum_ButtonName DefineButtonName(int i) //int override
+    {
+        if (i == 1)
+        {
+            return enum_ButtonName.btn1;
+        }
+
+        if (i == 2)
+        {
+            return enum_ButtonName.btn2;
+        }
+
+        if (i == 3)
+        {
+            return enum_ButtonName.btn3;
+        }
+
+        if (i == 4)
+        {
+            return enum_ButtonName.btn4;
+        }
+
+        if (i == 5)
+        {
+            return enum_ButtonName.btn5;
+        }
+
+        if (i == 6)
+        {
+            return enum_ButtonName.btn6;
+        }
+        return enum_ButtonName.none;//this shouldn't happen
+    }
+
+    enum_StickDir DefineStickDir(Vector2 stickInput)
     {
         if (stickInput.x == -1 && stickInput.y == -1)
         {
@@ -262,6 +396,10 @@ public class PlayerController : MonoBehaviour
         if (stickInput.x == -1 && stickInput.y == 1)
         {
             return enum_StickDir.UpLeft;
+        }
+        if (stickInput.x == -1 && stickInput.y == 0)
+        {
+            return enum_StickDir.Left;
         }
         if (stickInput.x == 0 && stickInput.y == 0)
         {
@@ -345,18 +483,22 @@ public class PlayerController : MonoBehaviour
         int comboCount = expectedInput.moveInputs.Count - 1; //how many inputs to execute move, hadouken being 236P is 4 Inputs
         for (int i = bufferFrames-1; i >= 0; i--) //this loops through the whole buffer, if we want to define how much of the buffer to loop through on a per move basis, that can be a property of MovelistDictionary
         {
-            if (i >= 0) //this is dumb, but you can potentially hit your last input on the move before the StickDir check/viceVersa
+            if (comboCount >= 0) //this is dumb, but you can potentially hit your last input on the move before the StickDir check/viceVersa
             {
                 foreach (enum_ButtonName btn in bufferData[i].pressedButtons)
                 {
-                    if (InputData.CompareButtonInput(btn, inputCombo[comboCount]))
+                    if (comboCount >= 0)
                     {
-                        comboCount--;
+                        //Debug.Log(bufferData[i].pressedButtons);
+                        if (InputData.CompareButtonInput(btn, inputCombo[comboCount]))
+                        {
+                            comboCount--;
+                        }
                     }
                 }
             }
 
-            if (i >= 0)
+            if (comboCount >= 0)
             {
                 if (InputData.CompareStickDir(bufferData[i].stickDirection, inputCombo[comboCount]))
                 {

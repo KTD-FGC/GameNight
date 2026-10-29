@@ -13,9 +13,15 @@ MonoBehaviour:
   m_Name: TestMovelist
   m_EditorClassIdentifier: 
   Priority1:
+  - moveData: {fileID: 11400000, guid: 423e185a33a1b1f43b117743e1abe9e1, type: 2}
+    moveInputs: 0900000009000000030000000c0000000b000000
+  - moveData: {fileID: 11400000, guid: 79eff7bad2a02834a948ed74c26f4adc, type: 2}
+    moveInputs: 05000000040000000300000005000000040000000300000009000000
+  Priority2: []
+  Priority3:
   - moveData: {fileID: 11400000, guid: b602e26e073aa0a47afc6dcbce696d26, type: 2}
     moveInputs: 05000000040000000300000009000000
-  Priority2: []
-  Priority3: []
   Priority4: []
-  Priority5: []
+  Priority5:
+  - moveData: {fileID: 11400000, guid: bce8b92cfc790f04590e706f54beb603, type: 2}
+    moveInputs: 090000000d000000
