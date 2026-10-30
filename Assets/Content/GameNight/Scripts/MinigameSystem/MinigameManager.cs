@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
@@ -9,7 +11,7 @@ public class MinigameManager : MonoBehaviour
     private bool isRepeat = false; //small variable to check for duplicate scenes, to make sure you can't get the same minigame twice
     //TO:DO - Proper sorter and scrambler to avoid this all together and make it IMPOSSIBLE to get the same minigame in a given sequence length
     [SerializeField]
-    private Object[] minigames;
+    private UnityEngine.Object[] minigames;
 
     [SerializeField]
     private TextMeshProUGUI sceneNameText;
@@ -22,6 +24,9 @@ public class MinigameManager : MonoBehaviour
     public System.Action StartMinigame;
 
 
+
+    private float _difficulty = 0f;
+    public float Difficulty => _difficulty;
     void OnEnable()
     {
 
@@ -86,7 +91,7 @@ public class MinigameManager : MonoBehaviour
     public void RandomSceneSelector()
     {
 
-        int newScene = Random.Range(0, minigames.Length);
+        int newScene = UnityEngine.Random.Range(0, minigames.Length);
         //If there are more than 2 minigames in the collection, proceed with duplicate protection
         if(minigames.Length > 2)
         {
@@ -96,7 +101,7 @@ public class MinigameManager : MonoBehaviour
                 isRepeat = true;
                 while (isRepeat)
                 {
-                    newScene = Random.Range(0, minigames.Length);
+                    newScene = UnityEngine.Random.Range(0, minigames.Length);
                     isRepeat = newScene == currentSceneIndex;
                 }
             }
@@ -127,5 +132,19 @@ public class MinigameManager : MonoBehaviour
         string sceneName = minigame.minigameScene.sceneName;
         sceneNameText.text = sceneName;
         SceneManager.LoadScene(sceneName);
+    }
+
+
+    IEnumerator ChangeMinigameSequence()
+    {
+        //Close the curtains
+        //Show if the point was awarded
+        //Either lose a life or increase the number of the round
+        //Wait a few seconds 
+        //Load next minigame
+        //Reveal said minigame
+        //Lock out player input until after the countdown
+        yield return null;
+
     }
 }
