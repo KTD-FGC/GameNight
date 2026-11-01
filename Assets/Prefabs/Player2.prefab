@@ -265,3 +265,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  moveInputsDictionary: {fileID: 11400000, guid: 3e78c326ce7eb4048a3af3286154d7f6, type: 2}

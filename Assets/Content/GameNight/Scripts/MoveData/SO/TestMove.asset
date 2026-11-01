@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7087b842824bac447ae97296352d4361, type: 3}
   m_Name: TestMove
   m_EditorClassIdentifier: 
-  moveName: TestPunch
+  moveName: TestHadouken
   moveIndex: 0
   myClip: {fileID: 0}
   healthChange: 0
