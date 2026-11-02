@@ -22,15 +22,19 @@ public class MinigameManager : MonoBehaviour
 
     public static MinigameManager ActiveManager;
     public System.Action StartMinigame;
+    public System.Action OnMinigameLose;
 
+    private Animator _animator;
 
+    //Difficulty increases based on completed games compared to difficulty scale
+    private float _difficulty = 1f;
+    //How hard should the difficulty scale off of completed games?
+    private float _difficultyScale;
+    private float _completedGames = 0;
 
-    private float _difficulty = 0f;
     public float Difficulty => _difficulty;
     void OnEnable()
     {
-
-
         if(ActiveManager == null)
         {
             ActiveManager = this;
@@ -46,13 +50,16 @@ public class MinigameManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
 
         MinigameTimer.TimerExpired += OnTimerExpired;
-        minigameTimer.StartTimer();
+        //minigameTimer.StartTimer();
+        _animator = GetComponentInChildren<Animator>();
     }
 
     private void OnTimerExpired()
     {
-        RandomSceneSelector();
-        minigameTimer.StartTimer();
+        //Send out the event that the game is lost
+        GlobalInstance.OnGameLose?.Invoke();
+        //When the timer expires, start the sequence to change the minigame
+        StartCoroutine(ChangeMinigameSequence());
     }
 
     //Placing here for later for tracking things on scene load and changes
@@ -65,6 +72,7 @@ public class MinigameManager : MonoBehaviour
     void Start()
     {
         LoadMinigameSet("MinigameSet_test");
+        StartCoroutine(ChangeMinigameSequence());
         //RandomSceneSelector();
     }
 
@@ -131,6 +139,11 @@ public class MinigameManager : MonoBehaviour
     {
         string sceneName = minigame.minigameScene.sceneName;
         sceneNameText.text = sceneName;
+
+        if(minigame.OverrideTimer)
+        {
+            minigameTimer.UpdateTimerValues(minigame.timerDuration, minigame.timerCountdown);
+        }
         SceneManager.LoadScene(sceneName);
     }
 
@@ -138,12 +151,20 @@ public class MinigameManager : MonoBehaviour
     IEnumerator ChangeMinigameSequence()
     {
         //Close the curtains
+        _animator.Play("EndRound");
+        yield return new WaitForSeconds(3);
         //Show if the point was awarded
         //Either lose a life or increase the number of the round
         //Wait a few seconds 
         //Load next minigame
+        RandomSceneSelector();
         //Reveal said minigame
+        _animator.Play("StartRound");
+        yield return new WaitForSeconds(3);
+        StartMinigame?.Invoke();
         //Lock out player input until after the countdown
+
+        minigameTimer.StartTimer();
         yield return null;
 
     }

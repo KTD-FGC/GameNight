@@ -13,7 +13,7 @@
 
 [X] minigame contains how long the timer should be
 
-[ ] actual time is adjustable outside of the scene itself
+[X] actual time is adjustable outside of the scene itself
 
 [X] timer should not start until after a countdown
 

@@ -9,7 +9,10 @@ public class MinigameObject : ScriptableObject
     //Countdown timer to start the minigame
     public SceneObject minigameScene;   // The scene to load for the minigame and pass the information into
 
+    [SerializeField]
+    private bool _overrideTimer;
+    public bool OverrideTimer => _overrideTimer;
     public float timerDuration = 10;     //Default value of 10 seconds
     public float timerCountdown = 3;    // How many seconds to count down before starting the timer
-    public GameObject playerPrefab;     //Empty space to handle storing the player prefrab to load in for the minigame
+    public MovelistDictionary minigameMovelist;     //Empty space to handle storing the player prefrab to load in for the minigame
 }

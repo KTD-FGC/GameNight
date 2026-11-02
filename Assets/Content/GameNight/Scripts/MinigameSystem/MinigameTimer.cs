@@ -19,6 +19,8 @@ public class MinigameTimer : MonoBehaviour
     public static Action<float> TimerUpdated;
     float currentTime;
     bool isRunning = false;
+
+    
     private void OnEnable()
     {
         GlobalInstance.RoundFinish += ChangeTimer;
@@ -33,15 +35,14 @@ public class MinigameTimer : MonoBehaviour
         if (didWin)
         {
             isRunning = false;
-
         }
-        SceneSelector.RandomSceneSelector();
+
     }
 
-    void Awake()
+    public void UpdateTimerValues(float duration, float delay)
     {
-
-
+        _timerDuration = duration;
+        _timerDelay = delay;
     }
 
     // Update is called once per frame
