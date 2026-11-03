@@ -57,6 +57,7 @@ public class MinigameManager : MonoBehaviour
     private void OnTimerExpired()
     {
         //Send out the event that the game is lost
+        GlobalInstance.RemoveLives();
         GlobalInstance.OnGameLose?.Invoke();
         //When the timer expires, start the sequence to change the minigame
         StartCoroutine(ChangeMinigameSequence());

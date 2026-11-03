@@ -46,7 +46,7 @@ public static class GlobalInstance
 
     public static void RemoveLives()
     {
-        if (lives <= 0)
+        if (lives >= 0)
         {
             RoundFinish?.Invoke(false);
             lives--;
