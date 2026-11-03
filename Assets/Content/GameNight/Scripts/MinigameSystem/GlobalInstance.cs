@@ -11,6 +11,10 @@ public static class GlobalInstance
 
     public static Action<bool> RoundFinish;
 
+
+    public static Action OnGameWin;
+    public static Action OnGameLose;
+
     public static void StartGame()
     {
         score = 0;
@@ -19,14 +23,14 @@ public static class GlobalInstance
 
     public static void WinGame()
     {
-        SceneSelector.ReturnToTitle();
+        //SceneSelector.ReturnToTitle();
 
     }
     
     public static void EndGame()
     {
 
-        SceneSelector.ReturnToTitle();
+        //SceneSelector.ReturnToTitle();
     }
 
     public static void AddScore()
@@ -42,7 +46,7 @@ public static class GlobalInstance
 
     public static void RemoveLives()
     {
-        if (lives <= 0)
+        if (lives >= 0)
         {
             RoundFinish?.Invoke(false);
             lives--;
