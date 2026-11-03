@@ -1,0 +1,21 @@
+[X] scenes in a randomizer 
+[X] random range between the scenes
+[X] load in minigame
+[ ] check if completed minigame objective
+	award 1 point
+	no points on fail
+
+[ ] ON load: check current point number based on minigames completed
+
+[ ] Pass info to determine difficulty
+	1st minigame, always on easy
+	scalable
+
+[X] minigame contains how long the timer should be
+
+[X] actual time is adjustable outside of the scene itself
+
+[X] timer should not start until after a countdown
+
+[ ] Countdown noises
+
