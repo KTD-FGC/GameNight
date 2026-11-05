@@ -1,0 +1,988 @@
+fileFormatVersion: 2
+guid: 01362086d589fae4dbddcc375a6fe4ca
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 24
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CameronSpritesheet3_9
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 816
+        width: 72
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26e964baba885be42bb227003974ef8b
+      internalID: -579015056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_10
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 816
+        width: 72
+        height: 100
+      alignment: 9
+      pivot: {x: 0.5138889, y: 0.47}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86ad0433b5fc1944690618a37fc8d0da
+      internalID: 1404099866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_11
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 815
+        width: 96
+        height: 100
+      alignment: 9
+      pivot: {x: 0.33333334, y: 0.48}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d040046439ae28d478c550c1f001f572
+      internalID: -1130046978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_12
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 817
+        width: 59
+        height: 86
+      alignment: 9
+      pivot: {x: 0.4915254, y: 0.54651165}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ead1cbe7b1709b148a681eb23109edf4
+      internalID: 79745246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_13
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 817
+        width: 55
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5272727, y: 0.5222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8021cf654a7be54cbaf48f935d75470
+      internalID: 463682741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_14
+      rect:
+        serializedVersion: 2
+        x: 628
+        y: 817
+        width: 47
+        height: 98
+      alignment: 9
+      pivot: {x: 0.5744681, y: 0.47959182}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9969bfb1a8f5d1459e52837c05759f0
+      internalID: 17468251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_25
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 632
+        width: 58
+        height: 89
+      alignment: 9
+      pivot: {x: 0.55172414, y: 0.53932583}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e88790b441f23bf4d8d46ca59cad7413
+      internalID: -1445101182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_26
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 632
+        width: 54
+        height: 86
+      alignment: 9
+      pivot: {x: 0.46296296, y: 0.55813956}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc33443e9868ad944bf6d8d0fba0dd08
+      internalID: 1463728973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_27
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 632
+        width: 71
+        height: 81
+      alignment: 9
+      pivot: {x: 0.5492958, y: 0.5555556}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43f743092a0bdd445912505a14a25978
+      internalID: 1575258846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_28
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 632
+        width: 80
+        height: 75
+      alignment: 9
+      pivot: {x: 0.3375, y: 0.62666667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8706d5ff585d68d4d97360ec4dfd8247
+      internalID: -1242566336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_29
+      rect:
+        serializedVersion: 2
+        x: 620
+        y: 632
+        width: 45
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46e88d8d761ec524ca924f3bc73f2dba
+      internalID: 75458371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_30
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 632
+        width: 70
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab6aafab1a7f4ff4ba5ea02d7bde32f0
+      internalID: 1085213531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_47
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 437
+        width: 39
+        height: 83
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10ddf28182e98a04084895ccbd01546c
+      internalID: -953773642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_48
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 437
+        width: 40
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 951ca68e5a41661439b4face50d922f6
+      internalID: 574588050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_49
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 437
+        width: 39
+        height: 83
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2e90944c51f78f4db8f8a216cb71f65
+      internalID: 1363201146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_50
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 437
+        width: 41
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f151816bad10c244a46c8a17d51bb8b
+      internalID: 1994969408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_51
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 437
+        width: 64
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8eb3ee61404da649838561bebcf370c
+      internalID: 775570547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_52
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 437
+        width: 57
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcc815b6b8e13e946a1e487eebcca0a8
+      internalID: -13649644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_53
+      rect:
+        serializedVersion: 2
+        x: 757
+        y: 439
+        width: 75
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6b8b1750d78eb74ea5e7c5f01e2d1b5
+      internalID: -368897360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_54
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 439
+        width: 83
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ef824c97f69d68419843e20f902487c
+      internalID: 1055387932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_69
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 269
+        width: 38
+        height: 110
+      alignment: 9
+      pivot: {x: 0.21052632, y: 0.44545454}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8d614f680e22e340b57c45506ea9717
+      internalID: 1112496143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_70
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 269
+        width: 63
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00984ebc8ea41af4f91e67221bab4d4f
+      internalID: -858816678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_71
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 269
+        width: 81
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2d5e8e7d7af07d40b4fcd87e0d124d1
+      internalID: -1982642384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_72
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 269
+        width: 56
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 704dc9bc224f9c84fb401cfdf8434b39
+      internalID: 346794589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_73
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 270
+        width: 64
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c80aeffe3d7917c4abdd3e3381d84aef
+      internalID: -1690489347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_74
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 269
+        width: 82
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1483b1f2f7b682469971296d4457e5a
+      internalID: 1598256243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_75
+      rect:
+        serializedVersion: 2
+        x: 691
+        y: 269
+        width: 61
+        height: 56
+      alignment: 9
+      pivot: {x: 0.6229508, y: 0.8214286}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a145e29c101998459dcb50cfb7de240
+      internalID: 1550333667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_76
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 270
+        width: 50
+        height: 83
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5421687}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed84275098d22974faec2dfa0796a2fc
+      internalID: 1514969036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_94
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 91
+        width: 70
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1a0065fd39b5de4aa99a2babc9bfdad
+      internalID: 242869851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_95
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 91
+        width: 70
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 550e0515b0ee8884a90fc450bf239d72
+      internalID: 405885715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_96
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 91
+        width: 80
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58126b328f906944a8f08b99bfd2462c
+      internalID: 1825262296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_97
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 91
+        width: 108
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 930dc20f4b64ae34198eb3017491a370
+      internalID: 758790747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_98
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 90
+        width: 78
+        height: 61
+      alignment: 9
+      pivot: {x: 0.41025642, y: 0.8032786}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d67fdb241e77769488942dbfd1914e8f
+      internalID: -664426659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_99
+      rect:
+        serializedVersion: 2
+        x: 762
+        y: 91
+        width: 93
+        height: 61
+      alignment: 9
+      pivot: {x: 0.3655914, y: 0.7377049}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b57ef137ae5928744a1b007dace3ad2d
+      internalID: 1195538971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CameronSpritesheet3_100
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 91
+        width: 116
+        height: 61
+      alignment: 9
+      pivot: {x: 0.31896552, y: 0.7540983}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5056478885b46645ae564beb170eb7a
+      internalID: 1439407917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 64963dbbc4b382842a673b903524b33b
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      CameronSpritesheet3_0: 1744369383
+      CameronSpritesheet3_1: -546983986
+      CameronSpritesheet3_10: 1404099866
+      CameronSpritesheet3_100: 1439407917
+      CameronSpritesheet3_11: -1130046978
+      CameronSpritesheet3_12: 79745246
+      CameronSpritesheet3_13: 463682741
+      CameronSpritesheet3_14: 17468251
+      CameronSpritesheet3_15: 951755193
+      CameronSpritesheet3_16: 1858555565
+      CameronSpritesheet3_17: -1604827309
+      CameronSpritesheet3_18: -13270686
+      CameronSpritesheet3_19: 103325589
+      CameronSpritesheet3_2: -1764578561
+      CameronSpritesheet3_20: 1843045261
+      CameronSpritesheet3_21: -926618428
+      CameronSpritesheet3_22: 920721096
+      CameronSpritesheet3_23: -169251129
+      CameronSpritesheet3_24: 1450402083
+      CameronSpritesheet3_25: -1445101182
+      CameronSpritesheet3_26: 1463728973
+      CameronSpritesheet3_27: 1575258846
+      CameronSpritesheet3_28: -1242566336
+      CameronSpritesheet3_29: 75458371
+      CameronSpritesheet3_3: 1270792986
+      CameronSpritesheet3_30: 1085213531
+      CameronSpritesheet3_31: 284978177
+      CameronSpritesheet3_32: -934097803
+      CameronSpritesheet3_33: -355359675
+      CameronSpritesheet3_34: 2122057015
+      CameronSpritesheet3_35: 1891295877
+      CameronSpritesheet3_36: 184844249
+      CameronSpritesheet3_37: -625199285
+      CameronSpritesheet3_38: 1555822619
+      CameronSpritesheet3_39: -1361915783
+      CameronSpritesheet3_4: 1556139596
+      CameronSpritesheet3_40: 107524585
+      CameronSpritesheet3_41: 1941209090
+      CameronSpritesheet3_42: 710975978
+      CameronSpritesheet3_43: 1636966841
+      CameronSpritesheet3_44: -2103410952
+      CameronSpritesheet3_45: -42159184
+      CameronSpritesheet3_46: 1902602734
+      CameronSpritesheet3_47: -953773642
+      CameronSpritesheet3_48: 574588050
+      CameronSpritesheet3_49: 1363201146
+      CameronSpritesheet3_5: -1134655710
+      CameronSpritesheet3_50: 1994969408
+      CameronSpritesheet3_51: 775570547
+      CameronSpritesheet3_52: -13649644
+      CameronSpritesheet3_53: -368897360
+      CameronSpritesheet3_54: 1055387932
+      CameronSpritesheet3_55: 240667227
+      CameronSpritesheet3_56: -2051086181
+      CameronSpritesheet3_57: -1432285210
+      CameronSpritesheet3_58: -945485880
+      CameronSpritesheet3_59: 790785048
+      CameronSpritesheet3_6: 915505081
+      CameronSpritesheet3_60: -946414032
+      CameronSpritesheet3_61: -2096960867
+      CameronSpritesheet3_62: -614996868
+      CameronSpritesheet3_63: 2003088496
+      CameronSpritesheet3_64: -477362970
+      CameronSpritesheet3_65: 1518863411
+      CameronSpritesheet3_66: 800175422
+      CameronSpritesheet3_67: -1226306662
+      CameronSpritesheet3_68: 791614106
+      CameronSpritesheet3_69: 1112496143
+      CameronSpritesheet3_7: 872820700
+      CameronSpritesheet3_70: -858816678
+      CameronSpritesheet3_71: -1982642384
+      CameronSpritesheet3_72: 346794589
+      CameronSpritesheet3_73: -1690489347
+      CameronSpritesheet3_74: 1598256243
+      CameronSpritesheet3_75: 1550333667
+      CameronSpritesheet3_76: 1514969036
+      CameronSpritesheet3_77: -1561249545
+      CameronSpritesheet3_78: -1603954912
+      CameronSpritesheet3_79: 381941732
+      CameronSpritesheet3_8: 1833130156
+      CameronSpritesheet3_80: 255406227
+      CameronSpritesheet3_81: 351523023
+      CameronSpritesheet3_82: 149715363
+      CameronSpritesheet3_83: 1940868579
+      CameronSpritesheet3_84: 865271692
+      CameronSpritesheet3_85: -1899181459
+      CameronSpritesheet3_86: -838958859
+      CameronSpritesheet3_87: 1702006056
+      CameronSpritesheet3_88: -1543431124
+      CameronSpritesheet3_89: -290837333
+      CameronSpritesheet3_9: -579015056
+      CameronSpritesheet3_90: -1192299287
+      CameronSpritesheet3_91: 1933947180
+      CameronSpritesheet3_92: 1987874101
+      CameronSpritesheet3_93: -1526112799
+      CameronSpritesheet3_94: 242869851
+      CameronSpritesheet3_95: 405885715
+      CameronSpritesheet3_96: 1825262296
+      CameronSpritesheet3_97: 758790747
+      CameronSpritesheet3_98: -664426659
+      CameronSpritesheet3_99: 1195538971
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
