@@ -61,8 +61,8 @@ public class MoveHandler : MonoBehaviour
         //_activeMove.layer = _hitboxLayer.value;
         collider.HitboxCollider.excludeLayers = _hitboxLayer;
         collider.HitboxCollider.includeLayers = _enemyLayer;
-        _activeMove.GetComponent<Rigidbody2D>().excludeLayers = _hitboxLayer;
-        _activeMove.GetComponent<Rigidbody2D>().includeLayers = _enemyLayer;
+        _activeMove.GetComponent<Rigidbody>().excludeLayers = _hitboxLayer;
+        _activeMove.GetComponent<Rigidbody>().includeLayers = _enemyLayer;
         //_moveIsActive = true;
 
     }

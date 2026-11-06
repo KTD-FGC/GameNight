@@ -1,15 +1,15 @@
 using UnityEditor;
 using UnityEngine;
 using System;
-[RequireComponent (typeof(BoxCollider2D))]
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent (typeof(BoxCollider))]
+[RequireComponent(typeof(Rigidbody))]
 public class Hitbox : MonoBehaviour
 {
 
     public static Action<PlayerType, Hitbox> OnHit;
     public Action LocalHit;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public BoxCollider2D HitboxCollider;
+    public BoxCollider HitboxCollider;
     public PlayerType Owner;
 
     [Header("Hitbox Properties")]
@@ -39,13 +39,13 @@ public class Hitbox : MonoBehaviour
     private bool _madeContact = false;
     void OnEnable()
     {
-        HitboxCollider = GetComponent<BoxCollider2D>();
-        GetComponent<Rigidbody2D>().gravityScale = 0;
+        HitboxCollider = GetComponent<BoxCollider>();
+        GetComponent<Rigidbody>().useGravity = false;
         
     }
    
    //TO:DO Replace with normal "ontriggerEnter" since we will be moving to 3D collisions for everything regardless
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (_madeContact) 
         {
@@ -72,11 +72,11 @@ public class Hitbox : MonoBehaviour
         Gizmos.color = Color.red - new Color(0,0,0,.5f);
         if (transform.parent != null)
         {
-            Gizmos.DrawCube(transform.position + new Vector3(HitboxCollider.offset.x * transform.parent.localScale.x, HitboxCollider.offset.y, 0), new Vector3(HitboxCollider.size.x, HitboxCollider.size.y, 1));
+            Gizmos.DrawCube(transform.position + HitboxCollider.center, HitboxCollider.size);
         }
         else
         {
-            Gizmos.DrawCube(transform.position + new Vector3(HitboxCollider.offset.x * transform.localScale.x, HitboxCollider.offset.y, 0), new Vector3(HitboxCollider.size.x, HitboxCollider.size.y, 1));
+            Gizmos.DrawCube(transform.position + HitboxCollider.center, HitboxCollider.size);
         }
 
         

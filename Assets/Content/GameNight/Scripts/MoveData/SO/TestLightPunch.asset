@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveName: TestLightPunch
   moveIndex: 0
-  myClip: {fileID: 0}
+  myClip: {fileID: 7400000, guid: e7df7902d2ddea348bdf423b9dd21e68, type: 2}
   healthChange: 0
   myXMovement: 0
   myYMovement: 0

@@ -24,4 +24,4 @@ MonoBehaviour:
   Priority4: []
   Priority5:
   - moveData: {fileID: 11400000, guid: bce8b92cfc790f04590e706f54beb603, type: 2}
-    moveInputs: 090000000d000000
+    moveInputs: 09000000

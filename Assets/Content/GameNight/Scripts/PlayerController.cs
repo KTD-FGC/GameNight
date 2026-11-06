@@ -1,17 +1,20 @@
+using System.Collections;
 using UnityEngine;
 
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 
-using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
+
+    [SerializeField] Animator _animator;
 
     /*
      Temp variables for testing
      */
     private Vector2 m_moveAmt;
+    private bool _inputLocked = false;
     public float moveSpeed = 5.0f;
     public bool isFacingRight { get; set; } = true; //to mirror inputs
     private CharacterController CharacterController;
@@ -160,7 +163,11 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        GetInput();
+        //if(!_inputLocked)
+        //{
+            GetInput();  
+        //}
+
         ClearButtonBools();
     }
 
@@ -426,7 +433,27 @@ public class PlayerController : MonoBehaviour
     void ExecuteMove(MoveData executedMove) //execute the MoveData
     {
         Debug.Log(executedMove.moveName);
+        if(_inputLocked)
+        {
+            Debug.Log("Blocked!!! NO moves");
+            return;
+        }
+        _animator.Play(executedMove.myClip.name);
+        _inputLocked = true;
+        StartCoroutine(TrackMoveDuration());
+        
         return;
+    }
+
+    IEnumerator TrackMoveDuration()
+    {
+        AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
+        float time = stateInfo.normalizedTime;
+
+        yield return new WaitUntil(()=>_animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f);
+        _inputLocked = false;
+        Debug.Log("Move is no longer locked");
+        yield return null;
     }
 
     void InterpretInput() //go from Highest to Lowest Priority inputs
