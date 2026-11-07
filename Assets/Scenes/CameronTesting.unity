@@ -264,6 +264,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4393599159680813657, guid: 8e02a0776a4e3f943b63a17377b8c337, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4819280434211136284, guid: 8e02a0776a4e3f943b63a17377b8c337, type: 3}
       propertyPath: m_Height
       value: 4
