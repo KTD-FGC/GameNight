@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7087b842824bac447ae97296352d4361, type: 3}
-  m_Name: TestLightPunch
+  m_Name: Cam_Crouch_Kick_M
   m_EditorClassIdentifier: 
-  moveName: TestLightPunch
+  moveName: Crouch Medium Kick
   moveIndex: 0
-  myClip: {fileID: 0}
+  myClip: {fileID: 7400000, guid: 2db8e95170793a84ba69022882c3598a, type: 2}
   healthChange: 0
   myXMovement: 0
   myYMovement: 0

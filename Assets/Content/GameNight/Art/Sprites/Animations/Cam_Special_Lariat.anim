@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Cam_Stand_Special_Lariat
+  m_Name: Cam_Special_Lariat
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0

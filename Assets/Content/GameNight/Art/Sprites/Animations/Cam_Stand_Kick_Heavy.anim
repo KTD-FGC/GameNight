@@ -21,17 +21,21 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -13649644, guid: 01362086d589fae4dbddcc375a6fe4ca, type: 3}
-    - time: 0.083333336
-      value: {fileID: -368897360, guid: 01362086d589fae4dbddcc375a6fe4ca, type: 3}
+      value: {fileID: -1250139522, guid: 92fa0c1393b39fe46afa1ae96bda38a7, type: 3}
     - time: 0.16666667
+      value: {fileID: -13649644, guid: 01362086d589fae4dbddcc375a6fe4ca, type: 3}
+    - time: 0.2
+      value: {fileID: -368897360, guid: 01362086d589fae4dbddcc375a6fe4ca, type: 3}
+    - time: 0.41666666
+      value: {fileID: 1055387932, guid: 01362086d589fae4dbddcc375a6fe4ca, type: 3}
+    - time: 0.75
       value: {fileID: 1055387932, guid: 01362086d589fae4dbddcc375a6fe4ca, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
     flags: 2
-  m_SampleRate: 12
+  m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -48,15 +52,17 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
+    - {fileID: -1250139522, guid: 92fa0c1393b39fe46afa1ae96bda38a7, type: 3}
     - {fileID: -13649644, guid: 01362086d589fae4dbddcc375a6fe4ca, type: 3}
     - {fileID: -368897360, guid: 01362086d589fae4dbddcc375a6fe4ca, type: 3}
+    - {fileID: 1055387932, guid: 01362086d589fae4dbddcc375a6fe4ca, type: 3}
     - {fileID: 1055387932, guid: 01362086d589fae4dbddcc375a6fe4ca, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.25
+    m_StopTime: 0.76666665
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -75,4 +81,18 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.41666666
+    functionName: LoadMovePrefab
+    data: 
+    objectReferenceParameter: {fileID: 5449698772314184388, guid: 35ee2b9f0cd5a484f8aab80c6be58796, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.46666667
+    functionName: ClearActiveMove
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
