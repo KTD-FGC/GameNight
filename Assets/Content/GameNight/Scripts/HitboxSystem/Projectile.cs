@@ -11,9 +11,9 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         _hitbox = GetComponent<Hitbox>();
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-
-            rb.linearVelocityX = projectileSpeed * -gameObject.transform.parent.localScale.x;
+        Rigidbody rb = GetComponent<Rigidbody>();
+        Vector3 force = new Vector3(projectileSpeed * gameObject.transform.parent.localScale.x, 0, 0);
+            rb.AddForce(force, ForceMode.VelocityChange);
 
             this.transform.parent = null;
 

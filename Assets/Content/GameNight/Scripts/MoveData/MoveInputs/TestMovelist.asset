@@ -19,8 +19,12 @@ MonoBehaviour:
     moveInputs: 05000000040000000300000005000000040000000300000009000000
   Priority2: []
   Priority3:
-  - moveData: {fileID: 11400000, guid: b602e26e073aa0a47afc6dcbce696d26, type: 2}
+  - moveData: {fileID: 11400000, guid: abf17f52c7a35544389d0b6a762bf6b3, type: 2}
     moveInputs: 05000000040000000300000009000000
+  - moveData: {fileID: 11400000, guid: ca4c9f58c3054a049957cb2e5d109c1a, type: 2}
+    moveInputs: 08000000090000000a0000000b000000
+  - moveData: {fileID: 11400000, guid: 23fe1e779fe6028409ba555c84797148, type: 2}
+    moveInputs: 03000000050000000400000009000000
   Priority4: []
   Priority5:
   - moveData: {fileID: 11400000, guid: bce8b92cfc790f04590e706f54beb603, type: 2}
@@ -47,5 +51,3 @@ MonoBehaviour:
     moveInputs: 050000000d000000
   - moveData: {fileID: 11400000, guid: b7a3a681b2fd36d4ba0fa5a3c4d7122d, type: 2}
     moveInputs: 050000000e000000
-  - moveData: {fileID: 11400000, guid: 15a58b0f0d0171b45a953884f76e9792, type: 2}
-    moveInputs: 05000000

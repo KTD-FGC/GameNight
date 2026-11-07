@@ -78,4 +78,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.26666668
+    functionName: LoadMovePrefab
+    data: 
+    objectReferenceParameter: {fileID: 1751452447641910513, guid: 268e5f33f88cc5440a54f8164d1fdd61, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

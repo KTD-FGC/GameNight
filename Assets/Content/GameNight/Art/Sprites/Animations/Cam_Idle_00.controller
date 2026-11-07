@@ -1241,7 +1241,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Cam_Special_Fireball
+  m_Name: Cam_Stand_Special_Fireball
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
