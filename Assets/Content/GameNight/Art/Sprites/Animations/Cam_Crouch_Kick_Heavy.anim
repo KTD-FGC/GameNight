@@ -21,19 +21,19 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -1138602301, guid: 657749d51652d66469518a16e54e1eab, type: 3}
-    - time: 0.16666667
       value: {fileID: -664426659, guid: 01362086d589fae4dbddcc375a6fe4ca, type: 3}
-    - time: 0.33333334
+    - time: 0.16666667
       value: {fileID: 1195538971, guid: 01362086d589fae4dbddcc375a6fe4ca, type: 3}
-    - time: 0.5
+    - time: 0.33333334
+      value: {fileID: 1439407917, guid: 01362086d589fae4dbddcc375a6fe4ca, type: 3}
+    - time: 0.5833333
       value: {fileID: 1439407917, guid: 01362086d589fae4dbddcc375a6fe4ca, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
     flags: 2
-  m_SampleRate: 6
+  m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -50,16 +50,16 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -1138602301, guid: 657749d51652d66469518a16e54e1eab, type: 3}
     - {fileID: -664426659, guid: 01362086d589fae4dbddcc375a6fe4ca, type: 3}
     - {fileID: 1195538971, guid: 01362086d589fae4dbddcc375a6fe4ca, type: 3}
+    - {fileID: 1439407917, guid: 01362086d589fae4dbddcc375a6fe4ca, type: 3}
     - {fileID: 1439407917, guid: 01362086d589fae4dbddcc375a6fe4ca, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.6666667
+    m_StopTime: 0.59999996
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -78,4 +78,18 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.33333334
+    functionName: LoadMovePrefab
+    data: 
+    objectReferenceParameter: {fileID: 5449698772314184388, guid: 35ee2b9f0cd5a484f8aab80c6be58796, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.36666667
+    functionName: ClearActiveMove
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
