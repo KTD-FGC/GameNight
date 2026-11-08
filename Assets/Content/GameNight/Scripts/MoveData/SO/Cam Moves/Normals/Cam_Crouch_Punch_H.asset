@@ -15,6 +15,6 @@ MonoBehaviour:
   moveName: Crouch Heavy
   moveIndex: 0
   myClip: {fileID: 7400000, guid: 81242b145ba47d949a79a192d118bcc5, type: 2}
-  healthChange: 0
+  healthChange: -5
   myXMovement: 0
   myYMovement: 0
