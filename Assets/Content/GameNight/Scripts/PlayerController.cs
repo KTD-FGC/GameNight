@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     private bool[] btnsHeldThisFrame = new bool[] { false, false, false, false, false, false };
     private bool[] btnsReleasedThisFrame = new bool[] { false, false, false, false, false, false };
 
-
+    Coroutine _currentMoveTracker;
     private struct InputData
     {
         public enum_StickDir stickDirection;
@@ -163,10 +163,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        //if(!_inputLocked)
-        //{
-            GetInput();  
-        //}
+        GetInput();
+
 
         ClearButtonBools();
     }
@@ -179,9 +177,14 @@ public class PlayerController : MonoBehaviour
         /*
          test code
          */
-        Vector3 move = new Vector3(m_moveAmt.x, 0, 0);
-        CharacterController.Move(move * moveSpeed *  Time.deltaTime);
-        _animator.SetFloat("Direction", m_moveAmt.x);
+        if(!_inputLocked)
+        {
+            Vector3 move = new Vector3(m_moveAmt.x, 0, 0);
+            CharacterController.Move(move * moveSpeed *  Time.deltaTime);  
+        }
+         _animator.SetFloat("Direction", m_moveAmt.x);
+        
+
         SetButtonBools();
     }
 
@@ -434,14 +437,14 @@ public class PlayerController : MonoBehaviour
     void ExecuteMove(MoveData executedMove) //execute the MoveData
     {
         Debug.Log(executedMove.moveName);
-        if(_inputLocked)
+        if(!_inputLocked)
         {
             Debug.Log("Blocked!!! NO moves");
-            return;
+            _animator.Play(executedMove.myClip.name);
+            _inputLocked = true;
+            _currentMoveTracker = StartCoroutine(TrackMoveDuration());
         }
-        _animator.Play(executedMove.myClip.name);
-        _inputLocked = true;
-        StartCoroutine(TrackMoveDuration());
+
         
         return;
     }
@@ -454,7 +457,6 @@ public class PlayerController : MonoBehaviour
         yield return new WaitUntil(()=>_animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f);
         _inputLocked = false;
         Debug.Log("Move is no longer locked");
-        yield return null;
     }
 
     void InterpretInput() //go from Highest to Lowest Priority inputs
