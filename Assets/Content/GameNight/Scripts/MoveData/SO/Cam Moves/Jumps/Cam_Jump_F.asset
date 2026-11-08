@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveName: Jump
   moveIndex: 0
-  myClip: {fileID: 7400000, guid: 1c61ff06da4e53b47b16c5cbceed72ab, type: 2}
+  myClip: {fileID: 7400000, guid: 87c9b62b901702247a08e8acabe6d872, type: 2}
   healthChange: 0
   myXMovement: 0
   myYMovement: 0

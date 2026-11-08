@@ -28,9 +28,9 @@ MonoBehaviour:
   Priority4:
   - moveData: {fileID: 11400000, guid: 6fd34b6e8251acd4aaec3e904333c019, type: 2}
     moveInputs: 02000000
-  - moveData: {fileID: 11400000, guid: 6fd34b6e8251acd4aaec3e904333c019, type: 2}
+  - moveData: {fileID: 11400000, guid: 750041dc900d81549a2853b1ef112cfd, type: 2}
     moveInputs: 01000000
-  - moveData: {fileID: 11400000, guid: 6fd34b6e8251acd4aaec3e904333c019, type: 2}
+  - moveData: {fileID: 11400000, guid: 059c54d9424ef14429a91bb4be134b5b, type: 2}
     moveInputs: 00000000
   Priority5:
   - moveData: {fileID: 11400000, guid: bce8b92cfc790f04590e706f54beb603, type: 2}
