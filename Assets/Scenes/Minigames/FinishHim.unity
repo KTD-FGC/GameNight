@@ -464,7 +464,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 422321471}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: aa9943e9185a58f4aaa70a998865c412, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1045,10 +1045,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.06039604
-    y: 0
-    width: 0.8787129
-    height: 1
+    x: 0
+    y: 0.07291667
+    width: 1
+    height: 0.8533334
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60.000004
@@ -1141,9 +1141,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minX: -0.8
-  maxX: 0.8
-  minY: -10.1
-  maxY: 0.91
+  maxX: 2
+  minY: -12
+  maxY: 2
   _enemy: {fileID: 422321471}
 --- !u!114 &1163449457
 MonoBehaviour:
@@ -1152,7 +1152,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163449451}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
   m_Name: 
@@ -1184,7 +1184,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163449451}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c88f5cead0c0b2a4eb05b5900433f8d1, type: 3}
   m_Name: 
@@ -1503,7 +1503,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1768486215}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: aa9943e9185a58f4aaa70a998865c412, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
