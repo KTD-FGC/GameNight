@@ -111,7 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HitboxCollider: {fileID: 1346111813447271936}
   Owner: 1
-  _damage: 0
+  _damage: 5
   _canKnockdown: 0
   _canLaunch: 0
   _cancelPriority: 0
