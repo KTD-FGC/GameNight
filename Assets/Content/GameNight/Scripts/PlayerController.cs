@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 
 
-public class PlayerController : MonoBehaviour
+public class PlayerControllerAlt : MonoBehaviour
 {
 
     [SerializeField] Animator _animator;
@@ -277,6 +277,8 @@ public class PlayerController : MonoBehaviour
     {
         if (button.name == "btn1")
         {
+            Debug.LogWarning("testestestsetest");
+
             return enum_ButtonName.btn1;
         }
         
@@ -311,6 +313,7 @@ public class PlayerController : MonoBehaviour
     {
         if (button.name == "btn1")
         {
+            Debug.LogWarning("testestestsetest");
             return 1;
         }
 
@@ -345,6 +348,8 @@ public class PlayerController : MonoBehaviour
     {
         if (i == 1)
         {
+            Debug.LogWarning("testestestsetest");
+
             return enum_ButtonName.btn1;
         }
 
