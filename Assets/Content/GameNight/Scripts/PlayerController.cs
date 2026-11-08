@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     public bool isFacingRight { get; set; } = true; //to mirror inputs
     private CharacterController CharacterController;
 
-    private enum enum_StickDir { UpLeft, Up, UpRight, Right, DownRight, Down, DownLeft, Left, Neutral }
+    private enum enum_StickDir { Neutral, UpLeft, Up, UpRight, Right, DownRight, Down, DownLeft, Left}
     private enum enum_ButtonName { btn1, btn2, btn3, btn4, btn5, btn6, none }
     public MovelistDictionary moveInputsDictionary; //edit in inspector
 
@@ -138,6 +138,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        _inputLocked = true;
         CharacterController = GetComponent<CharacterController>();
 
         bufferData = new InputData[bufferFrames];
@@ -150,6 +151,7 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        _inputLocked = false;
         gamepad = Gamepad.current;
     }
         /*
@@ -215,8 +217,10 @@ public class PlayerController : MonoBehaviour
 
     void GetInput()
     {
+
         Vector2 stickInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         stickInput = ClampStickDir(stickInput);
+ 
         if (!isFacingRight){
             stickInput.x *= -1;
         }
@@ -454,9 +458,10 @@ public class PlayerController : MonoBehaviour
         AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
         float time = stateInfo.normalizedTime;
 
-        yield return new WaitUntil(()=>_animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f);
+       yield return new WaitForSeconds(stateInfo.length);
         _inputLocked = false;
         Debug.Log("Move is no longer locked");
+        yield return null;
     }
 
     void InterpretInput() //go from Highest to Lowest Priority inputs
