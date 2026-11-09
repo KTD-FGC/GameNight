@@ -718,7 +718,7 @@ MonoBehaviour:
   _rb: {fileID: 1323527068}
   _collider: {fileID: 1323527069}
   _animator: {fileID: 750880997}
-  _launchAngle: {x: 25, y: 300, z: 0}
+  _launchAngle: {x: 75, y: 800, z: 0}
 --- !u!4 &1323527071
 Transform:
   m_ObjectHideFlags: 0

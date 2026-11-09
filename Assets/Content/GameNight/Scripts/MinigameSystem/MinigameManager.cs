@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MinigameManager : MonoBehaviour
 {
-    private int currentSceneIndex = 0;
+    public int currentSceneIndex = 0;
     private bool isRepeat = false; //small variable to check for duplicate scenes, to make sure you can't get the same minigame twice
     //TO:DO - Proper sorter and scrambler to avoid this all together and make it IMPOSSIBLE to get the same minigame in a given sequence length
     [SerializeField]
@@ -85,6 +85,7 @@ public class MinigameManager : MonoBehaviour
         else
         {
             GlobalInstance.AddScore();
+            StartCoroutine(ChangeMinigameSequence());
         }
 
     }
@@ -170,11 +171,12 @@ public class MinigameManager : MonoBehaviour
     void LoadNextMinigameInOrder()
     {
 
-        Debug.Log(_currentGameIndex + " is the current game index");
+        Debug.Log(_currentGameIndex + " is the current game index: "+ minigames[_currentGameIndex].name);
+
         OnMinigameSelected(minigames[_currentGameIndex] as MinigameObject);
         _currentGameIndex++;
 
-        if(_currentGameIndex > minigames.Length-1)
+        if(_currentGameIndex == minigames.Length)
         {
             _currentGameIndex = 0;
         }
@@ -209,7 +211,7 @@ public class MinigameManager : MonoBehaviour
         //Wait a few seconds 
         //Load next minigame
             //RandomSceneSelector();
-            LoadNextMinigameInOrder();
+         LoadNextMinigameInOrder();
         //Reveal said minigame
         _animator.Play("StartRound");
         yield return new WaitForSeconds(1);

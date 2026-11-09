@@ -456,7 +456,7 @@ MonoBehaviour:
   _rb: {fileID: 422321474}
   _collider: {fileID: 422321473}
   _animator: {fileID: 422321477}
-  _launchAngle: {x: 25, y: 200, z: 0}
+  _launchAngle: {x: 75, y: 600, z: 0}
 --- !u!65 &422321473
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1045,10 +1045,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.17760417
+    x: 0.06041667
     y: 0
-    width: 0.27506512
-    height: 0.31296295
+    width: 0.8789063
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60.000004
