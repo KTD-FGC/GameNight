@@ -462,6 +462,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1
   hitStunTime: 0.5
+  loseDistance: 2
   playerCharacter: {fileID: 1067152377}
 --- !u!114 &422321479
 MonoBehaviour:
@@ -606,11 +607,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!95 &992768690 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 4393599159680813657, guid: 8e02a0776a4e3f943b63a17377b8c337, type: 3}
-  m_PrefabInstance: {fileID: 1067152359}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1058338016
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -810,9 +806,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5518654121786583992, guid: 8e02a0776a4e3f943b63a17377b8c337, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1067152362}
-    - targetCorrespondingSourceObject: {fileID: 5518654121786583992, guid: 8e02a0776a4e3f943b63a17377b8c337, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1067152369}
   m_SourcePrefab: {fileID: 100100000, guid: 8e02a0776a4e3f943b63a17377b8c337, type: 3}
 --- !u!1 &1067152360 stripped
@@ -820,24 +813,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5518654121786583992, guid: 8e02a0776a4e3f943b63a17377b8c337, type: 3}
   m_PrefabInstance: {fileID: 1067152359}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1067152362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1067152360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 087b4309fb6e65742aab8cfef4b8f86d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CanTakeDamage: 0
-  _playerHealth: 1
-  _rb: {fileID: 0}
-  _collider: {fileID: 1067152369}
-  _animator: {fileID: 992768690}
-  _launchAngle: {x: -25, y: 200, z: 0}
 --- !u!65 &1067152369
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -977,9 +952,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.032407407
-    width: 0.33333334
-    height: 0.37925926
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60.000004

@@ -14,7 +14,7 @@ public class MinigameManager : MonoBehaviour
     private UnityEngine.Object[] minigames;
 
     [SerializeField]
-    private TextMeshProUGUI sceneNameText;
+    private TextMeshProUGUI sceneNameText, ScoreUI, LivesUI;
 
 
     private MinigameObject activeMinigame;
@@ -176,7 +176,8 @@ public class MinigameManager : MonoBehaviour
     {
         string sceneName = minigame.minigameScene.sceneName;
         sceneNameText.text = sceneName;
-
+        LivesUI.text = "Lives: " + GlobalInstance.lives;
+        ScoreUI.text = "Score: " + GlobalInstance.score;
         if(minigame.OverrideTimer)
         {
             minigameTimer.UpdateTimerValues(minigame.timerDuration, minigame.timerCountdown);

@@ -6,7 +6,7 @@ public class KeepAwayEnemy : MonoBehaviour, IDamageable
     Animator _animator;
     Rigidbody _rb;
     [SerializeField]
-    float moveSpeed, hitStunTime;
+    float moveSpeed, hitStunTime, loseDistance;
     [SerializeField]
     Transform playerCharacter;
     bool hitStun;
@@ -27,6 +27,13 @@ public class KeepAwayEnemy : MonoBehaviour, IDamageable
         if (!hitStun)
         {
             _rb.linearVelocity = Vector3.Normalize(playerCharacter.position - transform.position) * moveSpeed;
+        }
+        if (Vector3.Magnitude(playerCharacter.position - transform.position) <= loseDistance && !_animator.GetBool("Attack"))
+        {
+
+            _rb.linearVelocity = Vector3.zero;
+            _animator.SetBool("Attack", true);
+            GlobalInstance.RemoveLives();
         }
     }
 
