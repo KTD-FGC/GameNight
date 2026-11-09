@@ -15,6 +15,8 @@ public static class GlobalInstance
     public static Action OnGameWin;
     public static Action OnGameLose;
 
+    
+
     public static void StartGame()
     {
         score = 0;
@@ -38,6 +40,7 @@ public static class GlobalInstance
         score++;
         Debug.Log($"Score = {score}");
         RoundFinish?.Invoke(true);
+        OnGameWin?.Invoke();
         if ( score >= 20 )
         {
             WinGame();

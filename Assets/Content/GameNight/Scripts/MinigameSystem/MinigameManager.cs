@@ -26,6 +26,11 @@ public class MinigameManager : MonoBehaviour
 
     private Animator _animator;
 
+    [SerializeField]
+    private bool _pauseSceneSwap = false;
+    [SerializeField]
+    private bool _disableTimerTimeout = false;
+
     //Difficulty increases based on completed games compared to difficulty scale
     private float _difficulty = 1f;
     //How hard should the difficulty scale off of completed games?
@@ -50,12 +55,17 @@ public class MinigameManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
 
         MinigameTimer.TimerExpired += OnTimerExpired;
+        GlobalInstance.OnGameWin += StartMinigameShuffle;
         //minigameTimer.StartTimer();
         _animator = GetComponentInChildren<Animator>();
     }
 
     private void OnTimerExpired()
     {
+        if(_disableTimerTimeout)
+        {
+            return;
+        }
         //Send out the event that the game is lost
         GlobalInstance.RemoveLives();
         GlobalInstance.OnGameLose?.Invoke();
@@ -72,9 +82,14 @@ public class MinigameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        LoadMinigameSet("MinigameSet_test");
+        LoadMinigameSet("Minigame_Pack_01");
+
+        StartMinigameShuffle();
+    }
+
+    void StartMinigameShuffle()
+    {
         StartCoroutine(ChangeMinigameSequence());
-        //RandomSceneSelector();
     }
 
     /// <summary>
