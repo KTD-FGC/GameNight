@@ -55,6 +55,7 @@ public class MinigameManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
 
         MinigameTimer.TimerExpired += OnTimerExpired;
+        GlobalInstance.OnGameWin += StartMinigameShuffle;
         //minigameTimer.StartTimer();
         _animator = GetComponentInChildren<Animator>();
     }
@@ -81,9 +82,9 @@ public class MinigameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        LoadMinigameSet("MinigameSet_test");
+        LoadMinigameSet("Minigame_Pack_01");
 
-        //StartMinigameShuffle();
+        StartMinigameShuffle();
     }
 
     void StartMinigameShuffle()
