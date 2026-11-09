@@ -66,6 +66,7 @@ public class MinigameManager : MonoBehaviour
     private void OnGameLose()
     {
         //Make sure the game doesn't shuffle again
+        minigameTimer.StopTimer();
     }
 
     private void OnTimerExpired()

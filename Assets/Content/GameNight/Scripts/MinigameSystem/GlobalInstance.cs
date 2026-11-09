@@ -32,6 +32,7 @@ public static class GlobalInstance
     public static void EndGame()
     {
         SceneSelector.ReturnToTitle();
+        
     }
 
     public static void AddScore()
@@ -57,6 +58,7 @@ public static class GlobalInstance
         }
         else
         {
+            OnGameLose?.Invoke();
             EndGame();
         }
     }
