@@ -58,8 +58,14 @@ public class MinigameManager : MonoBehaviour
 
         MinigameTimer.TimerExpired += OnTimerExpired;
         GlobalInstance.OnGameWin += StartMinigameShuffle;
+        GlobalInstance.OnGameLose += OnGameLose;
         //minigameTimer.StartTimer();
         _animator = GetComponentInChildren<Animator>();
+    }
+
+    private void OnGameLose()
+    {
+        //Make sure the game doesn't shuffle again
     }
 
     private void OnTimerExpired()
@@ -70,7 +76,7 @@ public class MinigameManager : MonoBehaviour
         }
         //Send out the event that the game is lost
         GlobalInstance.RemoveLives();
-        GlobalInstance.OnGameLose?.Invoke();
+        //GlobalInstance.OnGameLose?.Invoke();
         //When the timer expires, start the sequence to change the minigame
         StartCoroutine(ChangeMinigameSequence());
     }
@@ -86,10 +92,10 @@ public class MinigameManager : MonoBehaviour
     {
         LoadMinigameSet("Minigame_Pack_01");
 
-        StartMinigameShuffle();
+        //StartMinigameShuffle();
     }
 
-    void StartMinigameShuffle()
+    public void StartMinigameShuffle()
     {
         StartCoroutine(ChangeMinigameSequence());
     }

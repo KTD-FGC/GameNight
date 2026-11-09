@@ -31,7 +31,7 @@ public static class GlobalInstance
     
     public static void EndGame()
     {
-
+        OnGameLose?.Invoke();
         //SceneSelector.ReturnToTitle();
     }
 
