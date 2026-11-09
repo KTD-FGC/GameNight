@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 
 
-public class PlayerControllerAlt : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
 
     [SerializeField] Animator _animator;

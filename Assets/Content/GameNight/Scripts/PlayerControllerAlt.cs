@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 
 
-public class PlayerController : MonoBehaviour
+public class PlayerControllerAlt : MonoBehaviour
 {
 
     [SerializeField] Animator _animator;
@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private int bufferFrames = 20; //we can have this set on a per minigame basis if needed, but should be large enough to reasonably read the inputs for say a super if needed
-    private InputData[] bufferData; //set empty data equal to bufferFrames so it's not putting null into the buffer
+    private InputData[] bufferDataAlt; //set empty data equal to bufferFrames so it's not putting null into the buffer
 
     private Gamepad gamepad;
 
@@ -140,10 +140,10 @@ public class PlayerController : MonoBehaviour
     {
         CharacterController = GetComponent<CharacterController>();
 
-        bufferData = new InputData[bufferFrames];
+        bufferDataAlt = new InputData[bufferFrames];
         for (int i = 0; i < bufferFrames; i++)
         {
-            bufferData[i] = new InputData(0, new enum_ButtonName[0], new enum_ButtonName[0], new enum_ButtonName[0]);
+            bufferDataAlt[i] = new InputData(0, new enum_ButtonName[0], new enum_ButtonName[0], new enum_ButtonName[0]);
         }
     }
 
@@ -427,11 +427,11 @@ public class PlayerController : MonoBehaviour
         {
             if (i != bufferFrames-1)//0 indexed
             {
-                bufferData[i] = bufferData[i + 1];
+                bufferDataAlt[i] = bufferDataAlt[i + 1];
             }
             if (i == bufferFrames-1)
             {
-                bufferData[i] = inputs;
+                bufferDataAlt[i] = inputs;
             }
         }
     }
@@ -518,7 +518,7 @@ public class PlayerController : MonoBehaviour
         {
             if (comboCount >= 0) //this is dumb, but you can potentially hit your last input on the move before the StickDir check/viceVersa
             {
-                foreach (enum_ButtonName btn in bufferData[i].pressedButtons)
+                foreach (enum_ButtonName btn in bufferDataAlt[i].pressedButtons)
                 {
                     if (comboCount >= 0)
                     {
@@ -533,7 +533,7 @@ public class PlayerController : MonoBehaviour
 
             if (comboCount >= 0)
             {
-                if (InputData.CompareStickDir(bufferData[i].stickDirection, inputCombo[comboCount]))
+                if (InputData.CompareStickDir(bufferDataAlt[i].stickDirection, inputCombo[comboCount]))
                 {
                     comboCount--;
                 }
