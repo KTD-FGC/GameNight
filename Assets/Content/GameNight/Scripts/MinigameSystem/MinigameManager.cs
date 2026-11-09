@@ -37,6 +37,8 @@ public class MinigameManager : MonoBehaviour
     private float _difficultyScale;
     private float _completedGames = 0;
 
+    private int _currentGameIndex = 0;
+
     public float Difficulty => _difficulty;
     void OnEnable()
     {
@@ -151,6 +153,18 @@ public class MinigameManager : MonoBehaviour
 
     }
 
+    void LoadNextMinigameInOrder()
+    {
+
+
+        OnMinigameSelected(minigames[_currentGameIndex] as MinigameObject);
+        _currentGameIndex++;
+        if(_currentGameIndex > minigames.Length-1)
+        {
+            _currentGameIndex = 0;
+        }
+    }
+
     private void OnMinigameSelected(MinigameObject minigame)
     {
         string sceneName = minigame.minigameScene.sceneName;
@@ -168,15 +182,17 @@ public class MinigameManager : MonoBehaviour
     {
         //Close the curtains
         _animator.Play("EndRound");
+        minigameTimer.StopTimer();
         yield return new WaitForSeconds(3);
         //Show if the point was awarded
         //Either lose a life or increase the number of the round
         //Wait a few seconds 
         //Load next minigame
-        RandomSceneSelector();
+            //RandomSceneSelector();
+            LoadNextMinigameInOrder();
         //Reveal said minigame
         _animator.Play("StartRound");
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
         StartMinigame?.Invoke();
         //Lock out player input until after the countdown
 

@@ -35,6 +35,7 @@ public class ApproachMePlayer : MonoBehaviour, IDamageable
     {
         if (_playerHealth > 0)
         {
+            Hitbox hitbox = other.GetComponent<Hitbox>();
             ProcessHitbox(other.GetComponent<Hitbox>());
         }
 
@@ -62,8 +63,8 @@ public class ApproachMePlayer : MonoBehaviour, IDamageable
     {
         GlobalInstance.AddScore();
         _animator.SetBool("isDead", true);
-        _rb.AddForce(_launchAngle);
-        _rb.useGravity = true;
+        //_rb.AddForce(_launchAngle);
+        //_rb.useGravity = true;
         Debug.Log("I am dead");
     }
 }

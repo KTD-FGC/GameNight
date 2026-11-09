@@ -39,6 +39,11 @@ public class MinigameTimer : MonoBehaviour
 
     }
 
+    public void StopTimer()
+    {
+        isRunning = false;
+    }
+
     public void UpdateTimerValues(float duration, float delay)
     {
         _timerDuration = duration;
