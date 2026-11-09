@@ -14,6 +14,8 @@ public class ApproachMePlayer : MonoBehaviour, IDamageable
 
     bool IDamageable.CanTakeDamage => throw new System.NotImplementedException();
 
+    bool isDead = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -36,7 +38,11 @@ public class ApproachMePlayer : MonoBehaviour, IDamageable
         if (_playerHealth > 0)
         {
             Hitbox hitbox = other.GetComponent<Hitbox>();
-            ProcessHitbox(other.GetComponent<Hitbox>());
+            if(hitbox != null)
+            {
+                ProcessHitbox(other.GetComponent<Hitbox>());
+            }
+
         }
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
@@ -53,7 +59,7 @@ public class ApproachMePlayer : MonoBehaviour, IDamageable
     public void TakeDamage(int incomingDamage)
     {
         _playerHealth -= incomingDamage;
-        if (_playerHealth <= 0)
+        if (_playerHealth <= 0 && !isDead)
         {
             Die();
         }
@@ -61,6 +67,7 @@ public class ApproachMePlayer : MonoBehaviour, IDamageable
 
     void Die()
     {
+        isDead = true;
         GlobalInstance.AddScore();
         _animator.SetBool("isDead", true);
         //_rb.AddForce(_launchAngle);

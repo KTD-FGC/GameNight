@@ -156,9 +156,10 @@ public class MinigameManager : MonoBehaviour
     void LoadNextMinigameInOrder()
     {
 
-
+        Debug.Log(_currentGameIndex + " is the current game index");
         OnMinigameSelected(minigames[_currentGameIndex] as MinigameObject);
         _currentGameIndex++;
+
         if(_currentGameIndex > minigames.Length-1)
         {
             _currentGameIndex = 0;

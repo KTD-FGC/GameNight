@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class FinishHimEnemy : MonoBehaviour, IDamageable
 {
-    public bool CanTakeDamage;
+    public bool CanTakeDamage = true;
     [SerializeField] int _enemyHealth;
     [SerializeField] Rigidbody _rb;
     [SerializeField] BoxCollider _collider;
@@ -29,7 +29,11 @@ public class FinishHimEnemy : MonoBehaviour, IDamageable
     {
         if (_enemyHealth > 0)
         {
-            ProcessHitbox(other.GetComponent<Hitbox>());
+                       Hitbox hitbox = other.GetComponent<Hitbox>();
+            if(hitbox != null)
+            {
+                ProcessHitbox(other.GetComponent<Hitbox>());
+            }
         }
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
@@ -46,7 +50,7 @@ public class FinishHimEnemy : MonoBehaviour, IDamageable
     public void TakeDamage(int incomingDamage)
     {
         _enemyHealth -= incomingDamage;
-        if (_enemyHealth <= 0)
+        if (_enemyHealth <= 0 && CanTakeDamage)
         {
             Die();
         }
@@ -54,6 +58,7 @@ public class FinishHimEnemy : MonoBehaviour, IDamageable
 
     void Die()
     {
+        CanTakeDamage = false;
         GlobalInstance.AddScore();
         _animator.SetBool("isDead", true);
         _rb.AddForce(_launchAngle);

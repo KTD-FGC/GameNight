@@ -341,7 +341,7 @@ Animator:
   m_GameObject: {fileID: 750880996}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c8369c39706193949a515ecb7cd87298, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7db14f27b6c598f41916444444437f12, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -713,7 +713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e95cedae79fdb8942a1e64e6269f9b0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanTakeDamage: 0
+  CanTakeDamage: 1
   _enemyHealth: 0
   _rb: {fileID: 1323527068}
   _collider: {fileID: 1323527069}
@@ -1110,10 +1110,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.032407407
-    width: 0.33333334
-    height: 0.37925926
+    x: 0.06041667
+    y: 0
+    width: 0.8789063
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60.000004
@@ -1720,7 +1720,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 665292242715409142, guid: 66259e0309cca9647970d6a0be3043e6, type: 3}
       propertyPath: _disableTimerTimeout
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5662805624223971370, guid: 66259e0309cca9647970d6a0be3043e6, type: 3}
       propertyPath: m_LocalPosition.x
