@@ -74,11 +74,19 @@ public class MinigameManager : MonoBehaviour
         {
             return;
         }
-        //Send out the event that the game is lost
-        GlobalInstance.RemoveLives();
-        //GlobalInstance.OnGameLose?.Invoke();
-        //When the timer expires, start the sequence to change the minigame
-        StartCoroutine(ChangeMinigameSequence());
+        if (activeMinigame.LoseOnTimeout)
+        {
+            //Send out the event that the game is lost
+            GlobalInstance.RemoveLives();
+            //GlobalInstance.OnGameLose?.Invoke();
+            //When the timer expires, start the sequence to change the minigame
+            StartCoroutine(ChangeMinigameSequence());
+        }
+        else
+        {
+            GlobalInstance.AddScore();
+        }
+
     }
 
     //Placing here for later for tracking things on scene load and changes
@@ -174,6 +182,7 @@ public class MinigameManager : MonoBehaviour
 
     private void OnMinigameSelected(MinigameObject minigame)
     {
+        activeMinigame = minigame;
         string sceneName = minigame.minigameScene.sceneName;
         sceneNameText.text = sceneName;
         LivesUI.text = "Lives: " + GlobalInstance.lives;
@@ -182,12 +191,15 @@ public class MinigameManager : MonoBehaviour
         {
             minigameTimer.UpdateTimerValues(minigame.timerDuration, minigame.timerCountdown);
         }
-        SceneManager.LoadScene(sceneName);
+
+
+            SceneManager.LoadScene(sceneName);
     }
 
 
     IEnumerator ChangeMinigameSequence()
     {
+        yield return new WaitForSeconds(3);
         //Close the curtains
         _animator.Play("EndRound");
         minigameTimer.StopTimer();

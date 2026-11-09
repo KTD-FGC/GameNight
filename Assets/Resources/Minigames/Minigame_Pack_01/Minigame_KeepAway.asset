@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigameScene: {fileID: 11400000, guid: 90b7cf710d0205b4a8c620788d74a6af, type: 2}
   _overrideTimer: 0
+  _loseOnTimeout: 0
   timerDuration: 10
   timerCountdown: 3
   minigameMovelist: {fileID: 0}

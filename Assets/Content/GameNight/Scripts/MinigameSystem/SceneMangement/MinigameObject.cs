@@ -11,6 +11,10 @@ public class MinigameObject : ScriptableObject
 
     [SerializeField]
     private bool _overrideTimer;
+
+    [SerializeField]
+    private bool _loseOnTimeout = true;
+    public bool LoseOnTimeout => _loseOnTimeout;
     public bool OverrideTimer => _overrideTimer;
     public float timerDuration = 10;     //Default value of 10 seconds
     public float timerCountdown = 3;    // How many seconds to count down before starting the timer

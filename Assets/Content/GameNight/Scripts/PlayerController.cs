@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -13,6 +14,9 @@ public class PlayerController : MonoBehaviour
     /*
      Temp variables for testing
      */
+
+
+    bool _globalStop = false;
     private Vector2 m_moveAmt;
     private bool _inputLocked = false;
     public float moveSpeed = 5.0f;
@@ -136,6 +140,34 @@ public class PlayerController : MonoBehaviour
 
     private Gamepad gamepad;
 
+
+
+    private void OnEnable()
+    {
+        GlobalInstance.OnGameLose += HandleLose;
+        GlobalInstance.OnGameWin += HandleLose;
+        MinigameManager.ActiveManager.StartMinigame += HandleMinigameStart;
+    }
+
+    private void HandleMinigameStart()
+    {
+        _inputLocked = false;
+    }
+
+    private void OnDisable()
+    {
+        GlobalInstance.OnGameLose -= HandleLose;
+        GlobalInstance.OnGameWin -= HandleLose;
+        MinigameManager.ActiveManager.StartMinigame -= HandleMinigameStart;
+    }
+
+    private void HandleLose()
+    {
+        _inputLocked = true;
+        _globalStop = true;
+        _animator.Play("Cam_Pose_Win");
+    }
+
     private void Awake()
     {
         _inputLocked = true;
@@ -165,6 +197,10 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (_globalStop)
+        {
+            return;
+        }
         GetInput();
 
 
@@ -174,17 +210,22 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_globalStop)
+        {
+            return;
+        }
         //GetInput();
 
         /*
          test code
          */
-        if(!_inputLocked)
+        if (!_inputLocked)
         {
             Vector3 move = new Vector3(m_moveAmt.x, 0, 0);
-            CharacterController.Move(move * moveSpeed *  Time.deltaTime);  
+            CharacterController.Move(move * moveSpeed *  Time.deltaTime);
+            _animator.SetFloat("Direction", m_moveAmt.x);
         }
-         _animator.SetFloat("Direction", m_moveAmt.x);
+
         
 
         SetButtonBools();
