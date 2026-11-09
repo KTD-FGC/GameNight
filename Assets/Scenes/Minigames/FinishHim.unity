@@ -451,7 +451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e95cedae79fdb8942a1e64e6269f9b0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanTakeDamage: 0
+  CanTakeDamage: 1
   _enemyHealth: 1
   _rb: {fileID: 422321474}
   _collider: {fileID: 422321473}
@@ -1045,10 +1045,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.06041667
+    x: 0.17760417
     y: 0
-    width: 0.8789063
-    height: 1
+    width: 0.27506512
+    height: 0.31296295
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60.000004

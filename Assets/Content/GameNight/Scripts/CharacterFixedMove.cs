@@ -33,7 +33,7 @@ public class CharacterFixedMove : StateMachineBehaviour
         _controller = animator.GetComponentInParent<CharacterController>();
        //_playerRigidbody.AddForce(_playerRigidbody.transform.right * direction * Velocity, ForceMode.Force);
        _ending_X = _startingPosition.x+_horizontalCurve.Evaluate(stateInfo.normalizedTime);
-        animator.transform.parent.localPosition =  new Vector3(_ending_X,_startingPosition.y +_verticalCurve.Evaluate(stateInfo.normalizedTime),0);
+        animator.transform.parent.localPosition =  new Vector3(_ending_X,_startingPosition.y +_verticalCurve.Evaluate(stateInfo.normalizedTime),_startingPosition.z);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

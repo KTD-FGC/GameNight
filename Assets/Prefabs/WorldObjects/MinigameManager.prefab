@@ -243,7 +243,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &3140427738548045551
@@ -294,6 +294,7 @@ GameObject:
   - component: {fileID: 933536062636909024}
   - component: {fileID: 6805818735178682725}
   - component: {fileID: 155193202902387864}
+  - component: {fileID: 6221672685335548368}
   m_Layer: 0
   m_Name: ManagerCanvas
   m_TagString: Untagged
@@ -408,6 +409,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!225 &6221672685335548368
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6201687594790264953}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &7685410874179403887
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,7 +466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timerDuration: 10
-  _timerDelay: 2
+  _timerDelay: 0
 --- !u!1 &8139374159575883539
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,3 +515,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigames: []
   sceneNameText: {fileID: 5654871088993596429}
+  _pauseSceneSwap: 0
+  _disableTimerTimeout: 0

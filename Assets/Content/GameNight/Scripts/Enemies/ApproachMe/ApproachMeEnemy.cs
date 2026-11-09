@@ -16,6 +16,23 @@ public class ApproachMeEnemy : MonoBehaviour, IDamageable
     private int frameCounter = 0;
     private int fireballTiming = 0;
 
+    bool _isActive = true;
+
+    void OnEnable()
+    {
+        GlobalInstance.RoundFinish += StopEnemy;
+    }
+
+    void OnDisable()
+    {
+        GlobalInstance.RoundFinish -= StopEnemy;
+    }
+
+    private void StopEnemy(bool obj)
+    {
+        _isActive = false;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,18 +41,23 @@ public class ApproachMeEnemy : MonoBehaviour, IDamageable
 
     void FixedUpdate()
     {
-        frameCounter++;
-        if (frameCounter == fireballTiming)
+
+        if(_isActive)
         {
-            _animator.SetBool("isThrowingFireball", true);
-            //TrackMoveDuration();
+            frameCounter++;
+            if (frameCounter == fireballTiming)
+            {
+                _animator.SetBool("isThrowingFireball", true);
+                //TrackMoveDuration();
+            }
+            if (frameCounter == fireballTiming + 1)
+            {
+                _animator.SetBool("isThrowingFireball", false);
+                fireballTiming = RandomizeFireballTiming();
+                frameCounter = 0;
+            }
         }
-        if (frameCounter == fireballTiming + 1)
-        {
-            _animator.SetBool("isThrowingFireball", false);
-            fireballTiming = RandomizeFireballTiming();
-            frameCounter = 0;
-        }
+
     }
 
     int RandomizeFireballTiming()
@@ -64,7 +86,12 @@ public class ApproachMeEnemy : MonoBehaviour, IDamageable
     {
         if (_enemyHealth > 0)
         {
-            ProcessHitbox(other.GetComponent<Hitbox>());
+            Hitbox hitbox = other.GetComponent<Hitbox>();
+            if(hitbox != null)
+            {
+                ProcessHitbox(other.GetComponent<Hitbox>());  
+            }
+
         }
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
