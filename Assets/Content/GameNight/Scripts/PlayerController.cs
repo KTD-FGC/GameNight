@@ -137,6 +137,10 @@ public class PlayerController : MonoBehaviour
 
     private int bufferFrames = 20; //we can have this set on a per minigame basis if needed, but should be large enough to reasonably read the inputs for say a super if needed
     private InputData[] bufferData; //set empty data equal to bufferFrames so it's not putting null into the buffer
+    private MoveData currentlyExecutingMove;
+    private MoveData[] canCancelInto; //moves the currently executing move can cancel into
+    private bool canCancel;
+    private int frameCounter = -1;
 
     private Gamepad gamepad;
 
@@ -205,6 +209,11 @@ public class PlayerController : MonoBehaviour
 
 
         ClearButtonBools();
+        frameCounter++;//specifically handled by functions for things such as cancel windows. If we want a frameCount since the start of a minigame, we can rename this
+        if (_inputLocked)
+        {
+            CancelWindowTracker(currentlyExecutingMove.cancelFramesStart, currentlyExecutingMove.cancelFramesEnd);
+        }
     }
 
     // Update is called once per frame
@@ -254,6 +263,14 @@ public class PlayerController : MonoBehaviour
         btnsPressedThisFrame = new bool[] { false, false, false, false, false, false };
         btnsHeldThisFrame = new bool[] { false, false, false, false, false, false };
         btnsReleasedThisFrame = new bool[] { false, false, false, false, false, false };
+    }
+
+    void ClearInputBuffer()
+    {
+        for (int i = 0; i < bufferFrames; i++)
+        {
+            bufferData[i] = new InputData(0, new enum_ButtonName[0], new enum_ButtonName[0], new enum_ButtonName[0]);
+        }
     }
 
     void GetInput()
@@ -488,10 +505,37 @@ public class PlayerController : MonoBehaviour
             _animator.Play(executedMove.myClip.name);
             _inputLocked = true;
             _currentMoveTracker = StartCoroutine(TrackMoveDuration());
+            currentlyExecutingMove = executedMove;
+            frameCounter = 0;
+            canCancel = false;
         }
-
         
         return;
+    }
+
+    void SetCancellableMoves(MovelistDictionary.MoveInfo executedMove)
+    {
+        int moveCount = executedMove.canCancelInto.Count;
+        if (moveCount > 0)
+        {
+            for (int i = 0; i < moveCount; i++)
+            {
+                canCancelInto = new MoveData[moveCount];
+                canCancelInto[i] = executedMove.canCancelInto[i];
+            }
+        }
+    }
+
+    void CancelWindowTracker(int startWindow, int closeWindow)//in frames, open/close the cancel window ie if startWindow is 15, 15 frames after move starts, open window. 
+    {
+        if (frameCounter >= startWindow && frameCounter < closeWindow)
+        {
+            canCancel = true;
+        }
+        else if (frameCounter >= closeWindow)
+        {
+            canCancel = false;
+        }
     }
 
     IEnumerator TrackMoveDuration()
@@ -510,6 +554,7 @@ public class PlayerController : MonoBehaviour
         for (int i = 0; i < moveInputsDictionary.Priority1.Count; i++)
         {
             if (CheckBufferForInput(moveInputsDictionary.Priority1[i])){
+                SetCancellableMoves(moveInputsDictionary.Priority1[i]);
                 ExecuteMove(moveInputsDictionary.Priority1[i].moveData);
                 return;
             }
@@ -519,6 +564,7 @@ public class PlayerController : MonoBehaviour
         {
             if (CheckBufferForInput(moveInputsDictionary.Priority2[i]))
             {
+                SetCancellableMoves(moveInputsDictionary.Priority2[i]);
                 ExecuteMove(moveInputsDictionary.Priority2[i].moveData);
                 return;
             }
@@ -528,6 +574,7 @@ public class PlayerController : MonoBehaviour
         {
             if (CheckBufferForInput(moveInputsDictionary.Priority3[i]))
             {
+                SetCancellableMoves(moveInputsDictionary.Priority3[i]);
                 ExecuteMove(moveInputsDictionary.Priority3[i].moveData);
                 return;
             }
@@ -537,6 +584,7 @@ public class PlayerController : MonoBehaviour
         {
             if (CheckBufferForInput(moveInputsDictionary.Priority4[i]))
             {
+                SetCancellableMoves(moveInputsDictionary.Priority4[i]);
                 ExecuteMove(moveInputsDictionary.Priority4[i].moveData);
                 return;
             }
@@ -546,6 +594,7 @@ public class PlayerController : MonoBehaviour
         {
             if (CheckBufferForInput(moveInputsDictionary.Priority5[i]))
             {
+                SetCancellableMoves(moveInputsDictionary.Priority5[i]);
                 ExecuteMove(moveInputsDictionary.Priority5[i].moveData);
                 return;
             }
@@ -555,8 +604,45 @@ public class PlayerController : MonoBehaviour
 
     bool CheckBufferForInput(MovelistDictionary.MoveInfo expectedInput) //naive implementation ie: checking full buffer, was the input "successfully" completed? 
     {
+        if (_inputLocked && canCancel)
+        {
+            bool foundLegalMove = false;
+            foreach (MoveData move in canCancelInto)
+            {
+                if (expectedInput.moveData == move)
+                {
+                    foundLegalMove = true;
+                }
+            }
+            if (!foundLegalMove)
+            {
+                return false;
+            }
+        }
+
         var inputCombo = expectedInput.moveInputs;
         int comboCount = expectedInput.moveInputs.Count - 1; //how many inputs to execute move, hadouken being 236P is 4 Inputs
+        int initComboCount = comboCount;
+
+        if (_inputLocked && canCancel) //see if the final input, ex 236236->(P) is within the cancel window 
+        {
+            foreach (enum_ButtonName btn in bufferData[bufferFrames-1].pressedButtons)
+            {
+                if (comboCount >= 0)
+                {
+                    //Debug.Log(bufferData[i].pressedButtons);
+                    if (InputData.CompareButtonInput(btn, inputCombo[comboCount]))
+                    {
+                        comboCount--;
+                    }
+                }
+            }
+            if (comboCount == initComboCount)
+            {
+                return false;
+            }
+        }
+
         for (int i = bufferFrames-1; i >= 0; i--) //this loops through the whole buffer, if we want to define how much of the buffer to loop through on a per move basis, that can be a property of MovelistDictionary
         {
             if (comboCount >= 0) //this is dumb, but you can potentially hit your last input on the move before the StickDir check/viceVersa

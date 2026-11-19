@@ -18,3 +18,8 @@ MonoBehaviour:
   healthChange: 0
   myXMovement: 0
   myYMovement: 0
+  startupFrames: 1
+  activeFrames: 1
+  recoveryFrames: 1
+  cancelFramesStart: 3
+  cancelFramesEnd: 25

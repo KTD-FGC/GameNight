@@ -12,4 +12,10 @@ public class MoveData : ScriptableObject
 
     public float myXMovement;
     public float myYMovement;
+
+    public int startupFrames = 1;
+    public int activeFrames = 1;
+    public int recoveryFrames = 1;
+    public int cancelFramesStart;
+    public int cancelFramesEnd;
 }

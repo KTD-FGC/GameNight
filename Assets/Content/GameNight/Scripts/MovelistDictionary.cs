@@ -24,6 +24,7 @@ public class MovelistDictionary : ScriptableObject
     {
         public MoveData moveData; //the move to be executed ie Light Fireball
         public List<Inputs> moveInputs;
+        public List<MoveData> canCancelInto; //what this can be cancelled into
     }
 
 }
