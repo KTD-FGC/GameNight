@@ -44,6 +44,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3015833570049206491, guid: 5c5e407ca43534c4e892184c76f2b3fe, type: 3}
+      propertyPath: _damage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3782020245731312284, guid: 5c5e407ca43534c4e892184c76f2b3fe, type: 3}
       propertyPath: m_Name
       value: Hbox_Punch_L (1) Variant

@@ -718,7 +718,7 @@ MonoBehaviour:
   _rb: {fileID: 1323527068}
   _collider: {fileID: 1323527069}
   _animator: {fileID: 750880997}
-  _launchAngle: {x: 25, y: 300, z: 0}
+  _launchAngle: {x: 75, y: 800, z: 0}
 --- !u!4 &1323527071
 Transform:
   m_ObjectHideFlags: 0
@@ -1765,6 +1765,10 @@ PrefabInstance:
     - target: {fileID: 8139374159575883539, guid: 66259e0309cca9647970d6a0be3043e6, type: 3}
       propertyPath: m_Name
       value: MinigameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8139374159575883539, guid: 66259e0309cca9647970d6a0be3043e6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

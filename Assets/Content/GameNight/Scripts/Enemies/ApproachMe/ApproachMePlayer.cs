@@ -68,10 +68,7 @@ public class ApproachMePlayer : MonoBehaviour, IDamageable
     void Die()
     {
         isDead = true;
-        GlobalInstance.AddScore();
-        _animator.SetBool("isDead", true);
-        //_rb.AddForce(_launchAngle);
-        //_rb.useGravity = true;
+        GlobalInstance.RemoveLives();
         Debug.Log("I am dead");
     }
 }

@@ -7,14 +7,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MinigameManager : MonoBehaviour
 {
-    private int currentSceneIndex = 0;
+    public int currentSceneIndex = 0;
     private bool isRepeat = false; //small variable to check for duplicate scenes, to make sure you can't get the same minigame twice
     //TO:DO - Proper sorter and scrambler to avoid this all together and make it IMPOSSIBLE to get the same minigame in a given sequence length
     [SerializeField]
     private UnityEngine.Object[] minigames;
 
     [SerializeField]
-    private TextMeshProUGUI sceneNameText;
+    private TextMeshProUGUI sceneNameText, ScoreUI, LivesUI;
 
 
     private MinigameObject activeMinigame;
@@ -58,8 +58,15 @@ public class MinigameManager : MonoBehaviour
 
         MinigameTimer.TimerExpired += OnTimerExpired;
         GlobalInstance.OnGameWin += StartMinigameShuffle;
+        GlobalInstance.OnGameLose += OnGameLose;
         //minigameTimer.StartTimer();
         _animator = GetComponentInChildren<Animator>();
+    }
+
+    private void OnGameLose()
+    {
+        //Make sure the game doesn't shuffle again
+        minigameTimer.StopTimer();
     }
 
     private void OnTimerExpired()
@@ -68,11 +75,20 @@ public class MinigameManager : MonoBehaviour
         {
             return;
         }
-        //Send out the event that the game is lost
-        GlobalInstance.RemoveLives();
-        GlobalInstance.OnGameLose?.Invoke();
-        //When the timer expires, start the sequence to change the minigame
-        StartCoroutine(ChangeMinigameSequence());
+        if (activeMinigame.LoseOnTimeout)
+        {
+            //Send out the event that the game is lost
+            GlobalInstance.RemoveLives();
+            //GlobalInstance.OnGameLose?.Invoke();
+            //When the timer expires, start the sequence to change the minigame
+            StartCoroutine(ChangeMinigameSequence());
+        }
+        else
+        {
+            GlobalInstance.AddScore();
+            StartCoroutine(ChangeMinigameSequence());
+        }
+
     }
 
     //Placing here for later for tracking things on scene load and changes
@@ -86,10 +102,10 @@ public class MinigameManager : MonoBehaviour
     {
         LoadMinigameSet("Minigame_Pack_01");
 
-        StartMinigameShuffle();
+        //StartMinigameShuffle();
     }
 
-    void StartMinigameShuffle()
+    public void StartMinigameShuffle()
     {
         StartCoroutine(ChangeMinigameSequence());
     }
@@ -156,11 +172,12 @@ public class MinigameManager : MonoBehaviour
     void LoadNextMinigameInOrder()
     {
 
-        Debug.Log(_currentGameIndex + " is the current game index");
+        Debug.Log(_currentGameIndex + " is the current game index: "+ minigames[_currentGameIndex].name);
+
         OnMinigameSelected(minigames[_currentGameIndex] as MinigameObject);
         _currentGameIndex++;
 
-        if(_currentGameIndex > minigames.Length-1)
+        if(_currentGameIndex == minigames.Length)
         {
             _currentGameIndex = 0;
         }
@@ -168,19 +185,24 @@ public class MinigameManager : MonoBehaviour
 
     private void OnMinigameSelected(MinigameObject minigame)
     {
+        activeMinigame = minigame;
         string sceneName = minigame.minigameScene.sceneName;
         sceneNameText.text = sceneName;
-
+        LivesUI.text = "Lives: " + GlobalInstance.lives;
+        ScoreUI.text = "Score: " + GlobalInstance.score;
         if(minigame.OverrideTimer)
         {
             minigameTimer.UpdateTimerValues(minigame.timerDuration, minigame.timerCountdown);
         }
-        SceneManager.LoadScene(sceneName);
+
+
+            SceneManager.LoadScene(sceneName);
     }
 
 
     IEnumerator ChangeMinigameSequence()
     {
+        yield return new WaitForSeconds(3);
         //Close the curtains
         _animator.Play("EndRound");
         minigameTimer.StopTimer();
@@ -190,7 +212,7 @@ public class MinigameManager : MonoBehaviour
         //Wait a few seconds 
         //Load next minigame
             //RandomSceneSelector();
-            LoadNextMinigameInOrder();
+         LoadNextMinigameInOrder();
         //Reveal said minigame
         _animator.Play("StartRound");
         yield return new WaitForSeconds(1);

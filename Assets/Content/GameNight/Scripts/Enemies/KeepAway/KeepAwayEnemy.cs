@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -6,12 +7,30 @@ public class KeepAwayEnemy : MonoBehaviour, IDamageable
     Animator _animator;
     Rigidbody _rb;
     [SerializeField]
-    float moveSpeed, hitStunTime;
+    float moveSpeed, hitStunTime, loseDistance;
     [SerializeField]
     Transform playerCharacter;
     bool hitStun;
 
     public bool CanTakeDamage => true;
+
+    bool canMove = true;
+
+
+
+    void OnEnable()
+    {
+        GlobalInstance.OnGameWin += PauseTheGuy;
+    }
+
+    void OnDisable()
+    {
+        GlobalInstance.OnGameWin -= PauseTheGuy;
+    }
+    private void PauseTheGuy()
+    {
+        canMove = false;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,9 +43,16 @@ public class KeepAwayEnemy : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-        if (!hitStun)
+        if (!hitStun && canMove)
         {
             _rb.linearVelocity = Vector3.Normalize(playerCharacter.position - transform.position) * moveSpeed;
+        }
+        if (Vector3.Magnitude(playerCharacter.position - transform.position) <= loseDistance && !_animator.GetBool("Attack"))
+        {
+
+            _rb.linearVelocity = Vector3.zero;
+            _animator.SetBool("Attack", true);
+            GlobalInstance.RemoveLives();
         }
     }
 

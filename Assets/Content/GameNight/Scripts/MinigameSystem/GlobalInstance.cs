@@ -21,18 +21,18 @@ public static class GlobalInstance
     {
         score = 0;
         lives = _maxLives;
+        Debug.Log(lives);
     }
 
     public static void WinGame()
     {
-        //SceneSelector.ReturnToTitle();
-
+        SceneSelector.ReturnToTitle();
     }
     
     public static void EndGame()
     {
-
-        //SceneSelector.ReturnToTitle();
+        SceneSelector.ReturnToTitle();
+        
     }
 
     public static void AddScore()
@@ -49,13 +49,16 @@ public static class GlobalInstance
 
     public static void RemoveLives()
     {
-        if (lives >= 0)
+        if (lives > 1)
         {
-            RoundFinish?.Invoke(false);
+            RoundFinish?.Invoke(true);
             lives--;
+            Debug.Log($"Lives = {lives}");
+            OnGameWin?.Invoke();
         }
         else
         {
+            OnGameLose?.Invoke();
             EndGame();
         }
     }
