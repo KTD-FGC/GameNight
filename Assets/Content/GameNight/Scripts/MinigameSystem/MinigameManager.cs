@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -218,9 +219,22 @@ public class MinigameManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         StartMinigame?.Invoke();
         //Lock out player input until after the countdown
-
+        MinigameCMD.TriggerAfterMinigameIntro(); // Starting the minigame, enabling the player input, starting the timer
         minigameTimer.StartTimer();
         yield return null;
 
+    }
+
+    IEnumerator RunMinigameFailSequence()
+    {
+        MinigameCMD.FailMinigame(); // Remove lives, player losing animation, 
+        yield return null;
+    }
+
+    IEnumerator RunMinigameWinSequence()
+    {
+        MinigameCMD.TriggerBeforeScore(); // Win animations in the minigame itself, anything pre-animation
+        //yield return new WaitUntil() // Wait until the after score sequence is complete, animations and similar to finish from the minigame
+        yield return null;
     }
 }

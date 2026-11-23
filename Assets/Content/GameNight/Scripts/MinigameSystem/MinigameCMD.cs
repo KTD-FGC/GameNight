@@ -26,11 +26,21 @@ public static class MinigameCMD
     /// Event hook for after a minigame is failed
     /// </summary>
     public static event Action OnMinigameTaskFailed;
+    public static event Action<bool> OnPauseMinigame;
+    public static event Action OnResetMinigame;
     public static void TriggerMinigameIntro() => OnStartMinigameIntro?.Invoke();
     public static void TriggerAfterMinigameIntro() => AfterMinigameIntro?.Invoke();
     public static void TriggerBeforeScore() => BeforeMinigamePointScored?.Invoke();
     public static void TriggerAfterScore() => AfterMinigamePointScored?.Invoke();
     public static void CompleteMinigame() => OnMinigameTaskComplete?.Invoke();
     public static void FailMinigame() => OnMinigameTaskComplete?.Invoke();
+
+    /// <summary>
+    /// Pauses the current minigame, passing a bool
+    /// If true, minigame will be paused. Will resume or not pause if set to false
+    /// </summary>
+    /// <param name="shouldPause"></param>
+    public static void SetMinigamePaused(bool shouldPause = true)=>OnPauseMinigame?.Invoke(shouldPause);
+    public static void ResetMinigame()=>OnResetMinigame?.Invoke();
 
 }
