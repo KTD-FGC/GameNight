@@ -1,11 +1,9 @@
 using System;
 using System.Collections;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 public class MinigameManager : MonoBehaviour
 {
     public int currentSceneIndex = 0;
@@ -39,6 +37,8 @@ public class MinigameManager : MonoBehaviour
     private float _completedGames = 0;
 
     private int _currentGameIndex = 0;
+    private bool finishedScoring = false;
+    private bool resultDidWin = false;
 
     public float Difficulty => _difficulty;
     void OnEnable()
@@ -58,39 +58,33 @@ public class MinigameManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
 
         MinigameTimer.TimerExpired += OnTimerExpired;
-        GlobalInstance.OnGameWin += StartMinigameShuffle;
+        //GlobalInstance.OnGameWin += StartMinigameShuffle;
         GlobalInstance.OnGameLose += OnGameLose;
+
+        MinigameCMD.AfterMinigamePointScored += FinishScoring;
+        MinigameCMD.OnMinigameTaskComplete += HandleMinigameResult;
+        MinigameCMD.OnSkipMinigame += LoadNextMinigameInOrder;
         //minigameTimer.StartTimer();
         _animator = GetComponentInChildren<Animator>();
     }
 
-    private void OnGameLose()
+    private void HandleMinigameResult(bool obj)
     {
-        //Make sure the game doesn't shuffle again
-        minigameTimer.StopTimer();
-    }
-
-    private void OnTimerExpired()
-    {
-        if(_disableTimerTimeout)
+        resultDidWin = obj;
+        if(resultDidWin)
         {
-            return;
-        }
-        if (activeMinigame.LoseOnTimeout)
-        {
-            //Send out the event that the game is lost
-            GlobalInstance.RemoveLives();
-            //GlobalInstance.OnGameLose?.Invoke();
-            //When the timer expires, start the sequence to change the minigame
-            StartCoroutine(ChangeMinigameSequence());
+            Debug.Log("Minigame win");
+            //Win minigame sequence
         }
         else
         {
-            GlobalInstance.AddScore();
-            StartCoroutine(ChangeMinigameSequence());
+            //Fail minigame sequence
+            Debug.Log("Minigame lose");
         }
-
+        StartCoroutine(ChangeMinigameSequence());
     }
+
+
 
     //Placing here for later for tracking things on scene load and changes
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -207,34 +201,97 @@ public class MinigameManager : MonoBehaviour
         //Close the curtains
         _animator.Play("EndRound");
         minigameTimer.StopTimer();
-        yield return new WaitForSeconds(3);
+        if(resultDidWin)
+        {
+            Debug.Log("Starting win sequence");
+            yield return StartCoroutine(RunMinigameWinSequence());
+        }
+        //else
+        //{
+        //    yield return null;
+        //}
+        //yield return new WaitForSeconds(3);
         //Show if the point was awarded
         //Either lose a life or increase the number of the round
         //Wait a few seconds 
         //Load next minigame
             //RandomSceneSelector();
-         LoadNextMinigameInOrder();
-        //Reveal said minigame
+        LoadNextMinigameInOrder();
+        yield return StartCoroutine(StartNextMinigameSequence());
+        
+
+    }
+    IEnumerator StartNextMinigameSequence()
+    {
         _animator.Play("StartRound");
         yield return new WaitForSeconds(1);
+        MinigameCMD.TriggerMinigameIntro(); //Show the text instructions, reveal the minigame, start stuff
+        //Wait for the intro to finsh, then start the minigame
         StartMinigame?.Invoke();
         //Lock out player input until after the countdown
         MinigameCMD.TriggerAfterMinigameIntro(); // Starting the minigame, enabling the player input, starting the timer
         minigameTimer.StartTimer();
-        yield return null;
-
+        Debug.Log("Minigame has started");
     }
 
     IEnumerator RunMinigameFailSequence()
     {
-        MinigameCMD.FailMinigame(); // Remove lives, player losing animation, 
+        //MinigameCMD.FailMinigame(); // Remove lives, player losing animation, 
+        //yield return WaitUntil()
         yield return null;
     }
 
     IEnumerator RunMinigameWinSequence()
     {
-        MinigameCMD.TriggerBeforeScore(); // Win animations in the minigame itself, anything pre-animation
-        //yield return new WaitUntil() // Wait until the after score sequence is complete, animations and similar to finish from the minigame
+        MinigameCMD.TriggerBeforeScore();
+        //In mingame win animations (taunts, cheers, sounds, etc)
+        //Play the transition to the scoring screen
+        //Wait for finishing the scoring screen animations and similar
+        Debug.Log("Waiting for scoring to finish");
+        yield return new WaitUntil(() => finishedScoring == true); // Wait until the after score sequence is complete, animations and similar to finish from the minigame
+        finishedScoring = false;
+        Debug.Log("Scoring finished");
         yield return null;
+    }
+    private void WinMinigame()
+    {
+        minigameTimer.StopTimer();
+        StartCoroutine(RunMinigameWinSequence());
+    }
+
+    /// <summary>
+    /// Internal function for setting the "finishedScoring" flag to parse after a minigame
+    /// </summary>
+    private void FinishScoring()
+    {
+        finishedScoring = true;
+    }
+
+    private void OnGameLose()
+    {
+        //Make sure the game doesn't shuffle again
+        minigameTimer.StopTimer();
+    }
+
+    private void OnTimerExpired()
+    {
+        if(_disableTimerTimeout)
+        {
+            return;
+        }
+        if (activeMinigame.LoseOnTimeout)
+        {
+            //Send out the event that the game is lost
+            GlobalInstance.RemoveLives();
+            //GlobalInstance.OnGameLose?.Invoke();
+            //When the timer expires, start the sequence to change the minigame
+            StartCoroutine(ChangeMinigameSequence());
+        }
+        else
+        {
+            GlobalInstance.AddScore();
+            StartCoroutine(ChangeMinigameSequence());
+        }
+
     }
 }

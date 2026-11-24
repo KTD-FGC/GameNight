@@ -429,6 +429,50 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 4393599159680813657, guid: 8e02a0776a4e3f943b63a17377b8c337, type: 3}
   m_PrefabInstance: {fileID: 681727524}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1118020017
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1118020019}
+  - component: {fileID: 1118020018}
+  m_Layer: 0
+  m_Name: MinigameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1118020018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118020017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7747aaebdac55fb488c0d41ee3f72368, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1118020019
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118020017}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1144.378, y: 621.5988, z: -9.172191}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1165982097
 GameObject:
   m_ObjectHideFlags: 0
@@ -1791,3 +1835,4 @@ SceneRoots:
   - {fileID: 2004774051}
   - {fileID: 2110492689}
   - {fileID: 1323527071}
+  - {fileID: 1118020019}

@@ -5,10 +5,11 @@ public class Minigame : MonoBehaviour
 {
 
     [Tooltip("Event for any direct assignments within the scene for triggering start minigame")]
-    public UnityAction OnStartMinigame;
-    public UnityAction OnAfterIntro;
-    public UnityAction OnPauseActivate;
-    public UnityAction OnPauseDeactivate;
+    public UnityEvent OnStartMinigame;
+    public UnityEvent OnAfterIntro;
+    public UnityEvent OnPauseActivate;
+    public UnityEvent OnPauseDeactivate;
+    public UnityEvent OnBeforeScore;
 
     public bool IsPaused    {get; private set;}
 
@@ -54,5 +55,11 @@ public class Minigame : MonoBehaviour
         //Same for if we are unpaused and get the call to pause
         //Always set paused to shouldPause
         IsPaused = shouldPause;
+    }
+    public virtual void BeforeScore()
+    {
+        OnBeforeScore?.Invoke();
+        //Slow down the game
+        //Run anything that needs to wait lol
     }
 }

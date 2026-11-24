@@ -21,19 +21,31 @@ public static class MinigameCMD
     /// <summary>
     /// Event hook for after a minigame is completed
     /// </summary>
-    public static event Action OnMinigameTaskComplete;
+    public static event Action<bool> OnMinigameTaskComplete;
     /// <summary>
     /// Event hook for after a minigame is failed
     /// </summary>
     public static event Action OnMinigameTaskFailed;
+
+    //Debug/ dev support functions
+    /// <summary>
+    /// Event hook for pausing a minigame
+    /// </summary>
     public static event Action<bool> OnPauseMinigame;
+    /// <summary>
+    /// Event hook for resetting a minigame
+    /// </summary>
     public static event Action OnResetMinigame;
+    /// <summary>
+    /// Event hook for skipping a minigame
+    /// </summary>
+    public static event Action OnSkipMinigame;
     public static void TriggerMinigameIntro() => OnStartMinigameIntro?.Invoke();
     public static void TriggerAfterMinigameIntro() => AfterMinigameIntro?.Invoke();
     public static void TriggerBeforeScore() => BeforeMinigamePointScored?.Invoke();
     public static void TriggerAfterScore() => AfterMinigamePointScored?.Invoke();
-    public static void CompleteMinigame() => OnMinigameTaskComplete?.Invoke();
-    public static void FailMinigame() => OnMinigameTaskComplete?.Invoke();
+    public static void CompleteMinigame() => OnMinigameTaskComplete?.Invoke(true);
+    public static void FailMinigame() => OnMinigameTaskComplete?.Invoke(false);
 
     /// <summary>
     /// Pauses the current minigame, passing a bool
@@ -42,5 +54,6 @@ public static class MinigameCMD
     /// <param name="shouldPause"></param>
     public static void SetMinigamePaused(bool shouldPause = true)=>OnPauseMinigame?.Invoke(shouldPause);
     public static void ResetMinigame()=>OnResetMinigame?.Invoke();
+    public static void SkipMinigame()=> OnSkipMinigame?.Invoke();
 
 }

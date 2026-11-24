@@ -23,13 +23,13 @@ public class MinigameTimer : MonoBehaviour
     
     private void OnEnable()
     {
-        GlobalInstance.RoundFinish += ChangeTimer;
-        MinigameManager.ActiveManager.StartMinigame += StartTimer;
+        //GlobalInstance.RoundFinish += ChangeTimer;
+        //MinigameManager.ActiveManager.StartMinigame += StartTimer;
     }
     private void OnDisable()
     {
-        GlobalInstance.RoundFinish -= ChangeTimer;
-        MinigameManager.ActiveManager.StartMinigame -= StartTimer;
+        //GlobalInstance.RoundFinish -= ChangeTimer;
+        //MinigameManager.ActiveManager.StartMinigame -= StartTimer;
     }
 
     private void ChangeTimer(bool didWin)

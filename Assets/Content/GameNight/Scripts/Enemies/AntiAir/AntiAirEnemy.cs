@@ -10,6 +10,7 @@ public class AntiAirEnemy : MonoBehaviour
     int _enemyHealth = 1;
     [SerializeField] Rigidbody _rb;
     [SerializeField] Vector3 _launchAngle;
+    [SerializeField] Minigame minigame;
     void OnEnable()
     {
         _hurtbox = GetComponentInChildren<Hurtbox>();
@@ -39,10 +40,11 @@ public class AntiAirEnemy : MonoBehaviour
 
     void Die()
     {
-        GlobalInstance.AddScore();
+        //GlobalInstance.AddScore();
         _animator.SetBool("isDead", true);
         _rb.AddForce(_launchAngle);
         _rb.useGravity = true;
         Debug.Log("I am dead");
+        MinigameCMD.CompleteMinigame();
     }
 }

@@ -59,7 +59,8 @@ public class FinishHimEnemy : MonoBehaviour, IDamageable
     void Die()
     {
         CanTakeDamage = false;
-        GlobalInstance.AddScore();
+        //GlobalInstance.AddScore();
+        MinigameCMD.CompleteMinigame();
         _animator.SetBool("isDead", true);
         _rb.AddForce(_launchAngle);
         _rb.useGravity = true;
